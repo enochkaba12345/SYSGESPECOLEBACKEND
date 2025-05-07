@@ -1,1 +1,25 @@
 
+version: "3.8"
+services:
+db:
+image: postgres:15
+container\_name: postgres\_db
+environment:
+POSTGRES\_USER: sysgespecoledbb\_user
+POSTGRES\_PASSWORD: FK172bcjHNvAoqRaNUyDCeNw5f5r7aXU
+POSTGRES\_DB: sysgespecoledbb
+ports:
+\- "5432:5432"
+restart: always
+
+app:
+build: .
+container\_name: spring\_app
+depends\_on:
+\- db
+environment:
+SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/sysgespecoledbb
+SPRING\_DATASOURCE\_USERNAME: sysgespecoledbb\_user
+SPRING\_DATASOURCE\_PASSWORD: FK172bcjHNvAoqRaNUyDCeNw5f5r7aXU
+ports:
+\- "8080:8080"  je veux cree ou
