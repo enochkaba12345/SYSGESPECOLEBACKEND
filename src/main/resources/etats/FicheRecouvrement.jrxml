@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FicheRecouvrement" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9bbf8fd2-51d8-43cb-9287-51cd06410808">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="noms" class="java.lang.String"/>
+	<field name="province" class="java.lang.String"/>
+	<field name="commune" class="java.lang.String"/>
+	<field name="avenue" class="java.lang.String"/>
+	<field name="classe" class="java.lang.String"/>
+	<field name="ecole" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="montant_paiement" class="java.lang.Double"/>
+	<field name="montant_frais" class="java.lang.Double"/>
+	<field name="logos" class="java.lang.String"/>
+	<variable name="RowIndex" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{RowIndex} + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalPaiementEtFrais" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{montant_paiement} == null ? 0.0 : $F{montant_paiement}.doubleValue()) + 
+        ($F{montant_frais} == null ? 0.0 : $F{montant_frais}.doubleValue())]]></variableExpression>
+	</variable>
+	<variable name="totalMontantFrais" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montant_frais} == null ? 0.0 : $F{montant_frais}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalMontantPaiement" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montant_paiement} == null ? 0.0 : $F{montant_paiement}.doubleValue()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="147" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="10" width="100" height="83" uuid="35ed0d8c-09f5-4019-a5a4-937c6e5531d6"/>
+				<imageExpression><![CDATA[new java.net.URL($F{logos})]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="115" y="73" width="400" height="20" uuid="5dae39ec-be85-40f3-8211-16352f1c2851"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="49" width="103" height="20" uuid="94ebdd0d-eb2a-47f5-9abe-905f1b12940a"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMMUNE DE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="203" y="49" width="318" height="19" uuid="57b99596-38f8-4c15-9597-cf4bff4a811c"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="26" width="399" height="20" uuid="30df49ff-91ec-472c-835e-a5ad49e7b296"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="3" width="103" height="20" uuid="dc08336a-962a-400f-9923-955f8a6d83bc"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VILLE PROVINCE DE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="225" y="3" width="290" height="20" uuid="d25dc91e-a0dc-4458-a5b5-8067dbe686bd"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="103" width="550" height="1" uuid="5f207992-6849-40bb-aa4b-30cb714edb7e"/>
+			</line>
+			<staticText>
+				<reportElement x="100" y="112" width="198" height="23" uuid="1e18f873-4d47-4152-96dc-3d5aabf9e15e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTE DES RECOUVREMENTS DE LA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="297" y="112" width="270" height="23" uuid="fff00047-649e-470c-8e86-e9e00b54f115"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="-13" y="0" width="33" height="32" backcolor="#00FBFF" uuid="d94abba7-8355-46d3-b785-5989f92f57cc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28eeb285-2f09-42f3-9e03-67467377f1c6"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="0" width="242" height="32" backcolor="#00FBFF" uuid="97ef9469-5473-40ad-b3fe-217716fb5099">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28eeb285-2f09-42f3-9e03-67467377f1c6"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="0" width="80" height="32" backcolor="#00FBFF" uuid="05e4d186-edc6-4d4c-b5cf-7c75b8407110">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5dc0c8b4-ab9a-432d-a8f8-078b056e011d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="117" height="32" backcolor="#00FBFF" uuid="5ef97243-a732-49e3-9dd0-f3c0534b6d3d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d4d9f268-abf4-4b0d-aef2-5d116f32bb9a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="0" width="108" height="32" backcolor="#00FBFF" uuid="759eb0a0-2641-4d2b-9fc9-a5f9da55105a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5dc0c8b4-ab9a-432d-a8f8-078b056e011d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTANT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="-13" y="0" width="33" height="30" uuid="7d84c3f4-9219-414b-9dde-9a3bce68a2d7"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{RowIndex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="0" width="242" height="30" uuid="aaf6a0d4-c6f2-4eab-863f-52e77917bda2"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noms}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="80" height="30" uuid="756622cf-6076-42ef-a464-0dba23f21244"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="108" height="30" uuid="25ce1913-92d6-4deb-aef3-382394d73668"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CDF " + ($F{montant_paiement} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($F{montant_paiement}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="117" height="30" uuid="b712df21-6f04-4586-a723-2c5c22e6ce13"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CDF " + ($F{montant_frais} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($F{montant_frais}))]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="567" height="1" forecolor="#CCCCCC" uuid="1bd86979-a785-47ee-839b-d52611a0b414"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="281" y="0" width="100" height="30" uuid="102695a8-046e-496d-8756-43418c5379ab"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTANT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="1" width="318" height="30" uuid="039e21b1-8b8d-4925-bf84-9a432feb3330"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" CDF " + ($V{totalMontantPaiement} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($V{totalMontantPaiement}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="16" width="60" height="30" uuid="35952ade-9938-4f51-b3e8-7c2cfb5ee846"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ RESTE       :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="32" width="60" height="30" uuid="b94b145a-4034-4bf3-89f5-1085b6adbda1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ TOTAL       :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="17" width="318" height="30" uuid="348e45b3-6ffc-44f5-aee2-171703e5333c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" CDF " + ($V{totalMontantFrais} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($V{totalMontantFrais}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="32" width="318" height="30" uuid="ba8f4428-aa4f-44bd-96af-5acac229bda5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" CDF " + ($V{totalPaiementEtFrais} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($V{totalPaiementEtFrais}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

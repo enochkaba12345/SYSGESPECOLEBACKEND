@@ -1,0 +1,81 @@
+package com.sysgepecole.demo.Models;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "Tab_sousmenus")
+public class Soussmenus {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idsousmenus;
+	private String sousurl;
+	private long idsousmenu;
+	private String url;
+    private String icon;
+    private Boolean disabled;
+    private Boolean prevent;
+    private Boolean visibled;
+    
+	public long getIdsousmenus() {
+		return idsousmenus;
+	}
+	public void setIdsousmenus(long idsousmenus) {
+		this.idsousmenus = idsousmenus;
+	}
+	public String getSousurl() {
+		return sousurl;
+	}
+	public void setSousurl(String sousurl) {
+		this.sousurl = sousurl;
+	}
+	public long getIdsousmenu() {
+		return idsousmenu;
+	}
+	public void setIdsousmenu(long idsousmenu) {
+		this.idsousmenu = idsousmenu;
+	}
+
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	public Boolean getDisabled() {
+		return disabled;
+	}
+	public void setDisabled(Boolean disabled) {
+		this.disabled = disabled;
+	}
+	public Boolean getPrevent() {
+		return prevent;
+	}
+	public void setPrevent(Boolean prevent) {
+		this.prevent = prevent;
+	}
+	public Boolean getVisibled() {
+		return visibled;
+	}
+	public void setVisibled(Boolean visibled) {
+		this.visibled = visibled;
+	}
+	
+    
+    
+}

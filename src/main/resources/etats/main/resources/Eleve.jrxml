@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Eleve" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a98b4d5-9108-44d9-8819-c1030378f12d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ideleve" class="java.lang.Long"/>
+	<field name="nom" class="java.lang.String"/>
+	<field name="postnom" class="java.lang.String"/>
+	<field name="prenom" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="adresse" class="java.lang.String"/>
+	<field name="nomtuteur" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="telephone" class="java.lang.String"/>
+	<field name="datenaiss" class="java.util.Date"/>
+	<field name="dateins" class="java.util.Date"/>
+	<field name="ecole" class="java.lang.String"/>
+	<field name="classe" class="java.lang.String"/>
+	<field name="province" class="java.lang.String"/>
+	<field name="avenue" class="java.lang.String"/>
+	<field name="commune" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement x="83" y="65" width="100" height="20" uuid="fc73223f-8ba9-4f26-bc39-b3ee055157ee"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[AVENUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="45" width="100" height="20" uuid="c6d95e97-be58-4154-a5bb-60c26273e953"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMMUNE DE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="3" width="103" height="20" uuid="3370e334-765e-4e65-94d0-7fdcaee1315b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VILLE PROVINCE DE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="23" width="408" height="20" uuid="29b966f3-2f13-4936-9d82-9f8cd0480601"/>
+				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="3" width="302" height="20" uuid="fb8b9c50-b4d0-4c42-ab17-399699c178c8"/>
+				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="65" width="330" height="20" uuid="3b081ce6-501d-4c00-a823-50be9eb356fb"/>
+				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="45" width="331" height="20" uuid="889b863b-2c35-4b6c-a170-e53d321718d4"/>
+				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="204" y="-27" width="180" height="23" uuid="5481346a-d8ef-4634-9ca7-d862bac18322"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHE D'INSCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="0" width="16" height="20" uuid="f9deeb3a-f60b-4ede-b48d-5ff9b08bbd19"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="446" y="0" width="100" height="20" uuid="b3539585-4896-423f-bc5b-6198560c5e6c"/>
+				<textFieldExpression><![CDATA[$F{ideleve}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="432" splitType="Stretch">
+			<staticText>
+				<reportElement x="82" y="16" width="30" height="26" uuid="65fed0bd-2e12-4778-b937-5efc8771cc70"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="40" width="67" height="25" uuid="9e4c1026-e7f9-4e36-aab8-6afa3f769468"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[POSTNOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="65" width="68" height="24" uuid="b1c67e93-4500-4281-bb41-0eb51db83391"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="92" width="152" height="21" uuid="7b125b63-d97f-4ed6-ae07-513705cbecfb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIEU ET DATE NAISSANCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="150" width="89" height="24" uuid="a1df797c-d30f-4a33-aece-9096f897a9b6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOM TUTEUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="178" width="132" height="21" uuid="86f3589e-480b-4155-9097-79ddbe2c8901"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADRESSE DE RESIDENCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="208" width="129" height="20" uuid="faa17d98-d487-4aa5-8043-90cb01744196"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MAIL ET TELEPHONE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="266" width="68" height="20" uuid="e27b7f77-cb95-4f77-a79c-fa438ab0dce9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ECOLE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="286" width="68" height="21" uuid="18e4c9e9-49eb-4c11-be62-08a0e0f7ab7a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASSE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="28" y="134" width="516" height="1" uuid="2a33dc82-f2f7-4a40-b220-93d396b6de0a"/>
+			</line>
+			<line>
+				<reportElement x="26" y="253" width="516" height="1" uuid="5a507043-d1c3-4392-8f33-fdbfaed553de"/>
+			</line>
+			<staticText>
+				<reportElement x="30" y="121" width="152" height="21" uuid="72b0d039-84c7-44de-b591-e1d2691dd15f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETAIL TUTEUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="240" width="152" height="21" uuid="146c9f25-9731-452c-b16d-83b2bc18cf8f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETAIL SCOLARITE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="-8" width="152" height="21" uuid="a75b6a0c-583e-4be5-96e2-b4ee181d28dd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETAIL ELEVE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="31" y="5" width="516" height="1" uuid="d611ea55-7982-4d44-9028-2c2a306a143e"/>
+			</line>
+			<textField>
+				<reportElement x="152" y="16" width="157" height="16" uuid="b01f9286-4f7e-41ad-b31b-30c4e00a7b37"/>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="41" width="156" height="13" uuid="a86a749e-4e8f-4845-a0ba-877a2a873704"/>
+				<textFieldExpression><![CDATA[$F{postnom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="41" width="70" height="22" uuid="da9b3421-6307-4684-8282-5b476e612f1b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRENOM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="365" y="41" width="165" height="22" uuid="7441c62d-a0ec-402c-9e76-7b10933aec45"/>
+				<textFieldExpression><![CDATA[$F{prenom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="65" width="377" height="16" uuid="fd01f594-8d47-4bd8-99e5-0c14f5c5311f"/>
+				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="92" width="100" height="20" uuid="9805dbd0-b682-4612-88f5-7057d45ef643"/>
+				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="150" width="376" height="18" uuid="a340bead-f6da-47eb-84c3-6869e76ca08b"/>
+				<textFieldExpression><![CDATA[$F{nomtuteur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="178" width="332" height="20" uuid="770b5b63-27c1-48fb-9d22-5896b3d597a5"/>
+				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="208" width="131" height="17" uuid="c502e756-43c1-4f61-b57e-c5449a6cd24e"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="208" width="100" height="17" uuid="a7c73e20-490c-4a83-b9d0-6f7055ee8eb1"/>
+				<textFieldExpression><![CDATA[$F{telephone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="266" width="304" height="20" uuid="3470cddb-4117-439b-ab94-7c2978fd3f6d"/>
+				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="286" width="304" height="19" uuid="ff76a99b-226d-4250-ab7a-f762a0685334"/>
+				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="328" width="129" height="20" uuid="664768f0-3679-4cec-9a58-f9c05ce23b5f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GESTIONNAIRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="331" width="40" height="20" uuid="fdf50dd3-8b41-472c-821d-e9d88450d2b8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAIT A]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="352" y="331" width="100" height="20" uuid="b5ede075-5af9-4646-bc4b-0f93dd6e314e"/>
+				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="331" width="100" height="16" uuid="c134ab7d-8773-4e72-916d-780f0c0efd90"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateins})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="92" width="100" height="21" uuid="8413f732-4c43-47a9-b8af-806fcb27bc46"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{datenaiss})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

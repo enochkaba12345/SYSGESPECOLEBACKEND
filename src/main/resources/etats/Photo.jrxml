@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Photo" pageWidth="252" pageHeight="153" columnWidth="252" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="696a7b01-a8f7-4dfa-a4cc-9a3ff783dc65">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nom" class="java.lang.String"/>
+	<field name="postnom" class="java.lang.String"/>
+	<field name="prenom" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="avenue" class="java.lang.String"/>
+	<field name="ecole" class="java.lang.String"/>
+	<field name="annee" class="java.lang.String"/>
+	<field name="province" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="photo" class="java.lang.String"/>
+	<field name="adresse" class="java.lang.String"/>
+	<field name="classe" class="java.lang.String"/>
+	<field name="commune" class="java.lang.String"/>
+	<field name="ideleve" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="153" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="5" width="160" height="20" uuid="20d973e9-cdec-44ed-a053-708dc1f61183"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARTE D'ÉLÈVE]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="10" y="30" width="60" height="70" uuid="b9eff6a6-90ba-47f9-8ea9-4ddd15d1751d"/>
+				<imageExpression><![CDATA[new java.net.URL($F{photo})]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="80" y="30" width="60" height="15" uuid="d82342ae-78f6-4c17-88a4-9bb746729f83"/>
+				<text><![CDATA[NOM :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="30" width="100" height="15" uuid="f27581cf-29bb-486e-83d8-ba006a240080"/>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="45" width="60" height="15" uuid="f7d01470-7ea5-4faf-b712-b9a86184b53d"/>
+				<text><![CDATA[POSTNOM :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="45" width="100" height="15" uuid="6fed9929-7682-4cbf-936c-eea66101f5a2"/>
+				<textFieldExpression><![CDATA[$F{postnom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="60" width="60" height="15" uuid="29695ea0-b9b2-47f7-ba3b-b5854b657c9f"/>
+				<text><![CDATA[PRÉNOM :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="60" width="100" height="15" uuid="a1bcffb1-5043-400b-9185-7c641eebb40c"/>
+				<textFieldExpression><![CDATA[$F{prenom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="75" width="60" height="15" uuid="fedb3005-05c2-4f26-af16-c4b6627ca076"/>
+				<text><![CDATA[SEXE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="75" width="100" height="15" uuid="b3f84dff-0d1e-4752-a203-cdb27d941a80"/>
+				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="90" width="60" height="15" uuid="7c96ca7b-cc5a-411f-87cf-ca76b3dc93ab"/>
+				<text><![CDATA[CLASSE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="90" width="100" height="15" uuid="8da071e7-96ec-4b4a-a845-f0cd3daf9128"/>
+				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="105" width="60" height="15" uuid="e0f98a76-690a-4874-8224-bb74a3747b06"/>
+				<text><![CDATA[ADRESSE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="105" width="100" height="15" uuid="1aa641fc-f7a6-4baa-93cb-0e73bc05e610"/>
+				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="120" width="60" height="15" uuid="b1bdf6a7-13dc-441a-8736-64a05aa19a5d"/>
+				<text><![CDATA[ID N° :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="120" width="100" height="15" uuid="f50b5afb-0202-4599-80eb-a76e9ab5dacc"/>
+				<textFieldExpression><![CDATA[$F{ideleve}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="5" width="82" height="20" uuid="c02409cd-7dd8-4503-8ebb-336a7e915898"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{annee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="136" width="93" height="15" uuid="db8c98a0-b5a6-408b-b19d-7d8cce37d89b"/>
+				<text><![CDATA[DELIVRER ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="135" width="105" height="16" uuid="587831a7-cc84-498f-9646-ce1b06d8dfcc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="108" width="60" height="15" uuid="ae87b1c8-14c5-4be2-813a-7d2cb38aacfc"/>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="-3" y="120" width="63" height="22" uuid="0c3d8c88-43db-4790-bf8a-2ff662ac641a"/>
+				<imageExpression><![CDATA["C:/Users/Enoch Kabazolez/Pictures/signature.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<summary>
+		<band height="153" splitType="Stretch">
+			<staticText>
+				<reportElement x="73" y="54" width="169" height="20" uuid="d0de272f-aabc-450b-a1e2-42d283d63114"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Règlement de l'élève]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="10" y="73" width="232" height="75" uuid="bc468e82-de3f-439f-856e-8fab767d8768"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1. Respect des enseignants et du personnel.\n"+
+"2. Assiduité et ponctualité.\n"+
+"3. Port obligatoire de l'uniforme.\n"+
+"4. Aucune violence ou tricherie.\n"+
+"5. Participation active aux cours.\n"+
+"6. Respect des locaux et du matériel."]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="5" y="2" width="55" height="67" uuid="74cac9d0-7a10-4998-a259-126599f86a44"/>
+				<imageExpression><![CDATA["C:/Users/Enoch Kabazolez/Pictures/logos.PNG"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="61" y="2" width="157" height="16" uuid="eff5214a-1480-4866-b26f-d5db19a867f5"/>
+				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="16" width="159" height="16" uuid="00abe0dd-17e1-4c86-9a1b-c8c734e1b21b"/>
+				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="30" width="191" height="24" uuid="b94b10c2-142f-4f4a-a5c1-3730ec291ede"/>
+				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

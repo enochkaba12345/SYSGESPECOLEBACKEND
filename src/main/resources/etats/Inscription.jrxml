@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Inscription" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1da88f4-b120-4fa0-b690-ed63e956f50b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="eleve" uuid="977a0dc0-9604-49cc-8d52-80043952bbe8">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nom" class="java.lang.String"/>
+	<field name="postnom" class="java.lang.String"/>
+	<field name="prenom" class="java.lang.String"/>
+	<field name="ideleve" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="adresse" class="java.lang.String"/>
+	<field name="nomtuteur" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="telephone" class="java.lang.String"/>
+	<field name="datenaiss" class="java.lang.String"/>
+	<field name="libecole" class="java.lang.String"/>
+	<field name="libclasse" class="java.lang.String"/>
+	<field name="libprovince" class="java.lang.String"/>
+	<field name="dateins" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="-20" y="0" width="110" height="85" uuid="85dff6c3-9af0-419c-b624-c9cdfa2137f8"/>
+				<imageExpression><![CDATA["F:/logiciels/logos.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="101" y="3" width="140" height="20" uuid="e27acde1-0b82-42bd-ba9d-524786576116"/>
+				<text><![CDATA[VILLE PROVINCE DE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="23" width="100" height="20" uuid="67e941e0-9798-49ce-9937-a86e4c004f50"/>
+				<text><![CDATA[NOM ECOLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="45" width="100" height="20" uuid="bee6c987-3178-48cb-a26b-8598cdf4fa30"/>
+				<text><![CDATA[COMMUNE DE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="65" width="100" height="20" uuid="4393ab67-80f0-4f7c-a10f-d960ba3d27eb"/>
+				<text><![CDATA[AVENUE]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="440" y="1" width="135" height="24" uuid="32221db6-0046-48ca-86a9-c371213e3f94"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="170" y="0" width="180" height="23" uuid="f2adf0d6-163b-4342-9ccc-38a78c92eaf3"/>
+				<text><![CDATA[INSCRIPTION DE L'ELEVE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="394" splitType="Stretch">
+			<staticText>
+				<reportElement x="436" y="0" width="24" height="20" uuid="dd19cf01-4853-4993-b21e-7a8b0dd2195f"/>
+				<text><![CDATA[N° ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="30" width="100" height="26" uuid="eef1dc4e-0a5e-4f9a-ac15-4a0bfe4acf03"/>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="82" y="30" width="30" height="26" uuid="f8970cd2-9a79-48e5-b528-82edb8b7664e"/>
+				<text><![CDATA[NOM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="62" width="100" height="24" uuid="d8caae6f-9460-4762-9725-0578fc2e56cd"/>
+				<textFieldExpression><![CDATA[$F{postnom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="81" y="61" width="67" height="25" uuid="a57d4265-1a6b-401f-83e7-7342357371d8"/>
+				<text><![CDATA[POSTNOM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="61" width="100" height="24" uuid="f6155378-fdc2-4523-94af-d13d3db3f887"/>
+				<textFieldExpression><![CDATA[$F{prenom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="62" width="70" height="24" uuid="48cb2a32-b06a-4345-8b19-b373e811011d"/>
+				<text><![CDATA[PRENOM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="97" width="100" height="23" uuid="8baafc4e-90c3-4dcb-8ce5-4b8b29453e4a"/>
+				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="96" width="68" height="24" uuid="40674512-e3cb-455f-a8b0-ac413ea58aa0"/>
+				<text><![CDATA[SEXE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="250" y="130" width="124" height="23" uuid="27f265db-8483-49b8-8551-a474af26b280"/>
+				<textFieldExpression><![CDATA[$F{libprovince}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="81" y="132" width="152" height="21" uuid="a6e9654f-3654-44a0-94fe-cffc93ba73d8"/>
+				<text><![CDATA[LIEU ET DATE NAISSANCE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="374" y="130" width="100" height="23" uuid="f160faa6-7fbb-4186-9fde-83988669093e"/>
+				<textFieldExpression><![CDATA[$F{datenaiss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="165" width="100" height="24" uuid="85735d3c-0606-4b0c-a83c-5771d604ed7c"/>
+				<textFieldExpression><![CDATA[$F{nomtuteur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="81" y="166" width="89" height="24" uuid="76a62fbb-8931-49e3-bfc3-232c249c9921"/>
+				<text><![CDATA[NOM TUTEUR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="214" y="199" width="100" height="21" uuid="9104b73f-297d-4a38-a69e-3d0347a200dd"/>
+				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="199" width="132" height="21" uuid="09a194d0-3d22-4830-b3e4-b029aa7b2fb1"/>
+				<text><![CDATA[ADRESSE DE RESIDENCE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="214" y="231" width="185" height="20" uuid="5591903a-c470-4fb2-957a-eb700b81a99d"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="230" width="129" height="20" uuid="f7de94e9-61f2-405f-a65b-f1c3e15df996"/>
+				<text><![CDATA[MAIL ET TELEPHONE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="399" y="231" width="100" height="20" uuid="d10e615a-e110-4849-b66d-971304e8cff4"/>
+				<textFieldExpression><![CDATA[$F{telephone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="260" width="100" height="20" uuid="e317e969-4de9-4dfb-acf9-3486a5473a85"/>
+				<textFieldExpression><![CDATA[$F{libprovince}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="260" width="68" height="20" uuid="430aff60-ff9d-43f7-b652-0831ecc34ce0"/>
+				<text><![CDATA[ECOLE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="154" y="289" width="100" height="21" uuid="89bb61e4-d4e9-4e76-b850-d0009c3b9c4e"/>
+				<textFieldExpression><![CDATA[$F{libclasse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="289" width="68" height="21" uuid="1c3838cf-6f09-4c42-a0df-d4f1894fa357"/>
+				<text><![CDATA[CLASSE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="360" width="72" height="20" uuid="e8476fc5-5c74-4147-ac18-f7599b51749c"/>
+				<text><![CDATA[ENCODEUR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="461" y="361" width="100" height="20" uuid="5766f9be-cbef-4a8c-b1b7-fb13b50709a9"/>
+				<textFieldExpression><![CDATA[$F{dateins}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="361" width="30" height="20" uuid="6b479ff4-547e-426a-8250-ab03d7da07e1"/>
+				<text><![CDATA[Fait à]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="362" y="360" width="98" height="23" uuid="5cb496c7-e715-4c74-ba25-c3e7c928765f"/>
+				<textFieldExpression><![CDATA[$F{libprovince}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="-96" width="100" height="20" uuid="a1532572-c6b2-44f3-8fcd-3f1e89ad6d12"/>
+				<textFieldExpression><![CDATA[$F{libprovince}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="-75" width="124" height="23" uuid="e948ec10-c1bc-4693-96c0-a3991cbc1df9"/>
+				<textFieldExpression><![CDATA[$F{libprovince}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50"/>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

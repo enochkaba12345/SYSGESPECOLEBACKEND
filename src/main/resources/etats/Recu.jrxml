@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Paiement" pageWidth="550" pageHeight="570" columnWidth="400" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8bd19dd2-c9f6-49f2-ac82-a387efd13360">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="com.sysgepecole.demo.Models.NumberToWords"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idpaiement" class="java.lang.Long"/>
+	<field name="frais" class="java.lang.String"/>
+	<field name="montants" class="java.lang.Double"/>
+	<field name="datepaie" class="java.util.Date"/>
+	<field name="nom" class="java.lang.String"/>
+	<field name="postnom" class="java.lang.String"/>
+	<field name="prenom" class="java.lang.String"/>
+	<field name="ecole" class="java.lang.String"/>
+	<field name="classe" class="java.lang.String"/>
+	<field name="province" class="java.lang.String"/>
+	<field name="commune" class="java.lang.String"/>
+	<field name="avenue" class="java.lang.String"/>
+	<field name="username" class="java.lang.String"/>
+	<field name="logos" class="java.lang.String"/>
+	<detail>
+		<band height="320" splitType="Stretch">
+			<rectangle>
+				<reportElement x="9" y="-9" width="515" height="300" backcolor="#FFFFFF" uuid="0a05ed20-62e5-474f-b420-9db6b7c8f790"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="126" y="83" width="209" height="20" uuid="0a05ed20-62e5-474f-b420-9db6b7c8f790"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REÇU DE PAIEMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="127" width="100" height="15" uuid="511521e9-5d4a-4eff-9df0-8f8d4458a931"/>
+				<text><![CDATA[NOM ELEVE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="127" width="350" height="15" uuid="0f1eafce-d7e1-4b70-a4be-915a95902d44"/>
+				<textFieldExpression><![CDATA[$F{nom} + " " + $F{postnom} + " " + $F{prenom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="43" y="147" width="100" height="15" uuid="db0863d0-db90-4298-8a59-7b240f2c036a"/>
+				<text><![CDATA[CLASSE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="147" width="350" height="15" uuid="64323647-a0bc-4f14-8872-7f99f7ee54bd"/>
+				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="43" y="167" width="100" height="15" uuid="c35b9eb1-e6cf-4234-8988-184421cdbcef"/>
+				<text><![CDATA[LIBELLE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="167" width="350" height="15" uuid="d67bcf64-a14d-43a2-aa7e-3a444f0bd8e9"/>
+				<textFieldExpression><![CDATA[$F{frais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="1" width="143" height="21" uuid="c142b5e9-d0d6-4a0b-85d3-17151c701da1"/>
+				<textFieldExpression><![CDATA["CDF " + new java.text.DecimalFormat("#,##0.00").format($F{montants})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="246" width="50" height="15" uuid="5230e0eb-3267-49d6-99a8-a4046a3711b1"/>
+				<text><![CDATA[FAIT A ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="377" y="246" width="195" height="15" uuid="f66ac90e-af9c-4a1a-b7c8-fa2b6bfc1842"/>
+				<textFieldExpression><![CDATA[$F{province}+ " " +new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{datepaie})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="246" width="100" height="15" uuid="1e3ee42b-e22f-4156-ba8c-485c4e9662a0"/>
+				<text><![CDATA[CAISSE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="29" y="266" width="68" height="15" uuid="a52c6761-1e52-4852-9526-dd5e43299040"/>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="423" y="86" width="20" height="15" uuid="64184c8b-b093-40d9-a78c-e24ff9e8b1a3"/>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="86" width="76" height="15" uuid="7fdc7b39-8ab2-4979-a0ed-8fc4402dea04"/>
+				<textFieldExpression><![CDATA[$F{idpaiement}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="39" y="1" width="80" height="82" uuid="0a05ed20-62e5-474f-b420-9db6b7c8f790"/>
+				<imageExpression><![CDATA[new java.net.URL($F{logos})]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="126" y="2" width="103" height="20" uuid="3ca8ede6-d0f3-447a-bc2c-b262ad947ec2"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VILLE PROVINCE DE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="232" y="2" width="169" height="20" uuid="68eb5e50-6a50-4640-ae57-04adfb1e8219"/>
+				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="19" width="341" height="20" uuid="4a575944-0400-473b-b097-474c692884a7"/>
+				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="126" y="36" width="87" height="20" uuid="019a548f-399c-4c47-8e10-6782890642c9"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[COMMUNE DE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="36" width="254" height="20" uuid="b90a0dd1-24b2-4d16-9a83-1795e9046371"/>
+				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="54" width="402" height="20" uuid="e521f109-4cfe-4b3a-bd7e-93b2971524d3"/>
+				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="42" y="186" width="121" height="15" uuid="01269713-2f59-4421-9c8d-6ed6ec83a10e"/>
+				<text><![CDATA[MONTANT A PAYER]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="186" width="350" height="17" uuid="014cc3b9-8e5f-4c83-acbb-6fdbfda26c48"/>
+				<textFieldExpression><![CDATA[com.sysgepecole.demo.Models.NumberToWords.convert($F{montants})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
