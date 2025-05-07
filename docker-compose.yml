@@ -22,4 +22,4 @@ SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/sysgespecoledbb
 SPRING\_DATASOURCE\_USERNAME: sysgespecoledbb\_user
 SPRING\_DATASOURCE\_PASSWORD: FK172bcjHNvAoqRaNUyDCeNw5f5r7aXU
 ports:
-\- "8080:8080"  je veux cree ou
+\- "8080:8080"
