@@ -1,5 +1,5 @@
 # Étape de build
-FROM openjdk:17-alpine AS build
+FROM openjdk:17:alpine-jre
 RUN apk add --no-cache maven curl
 
 WORKDIR /app
