@@ -6,8 +6,8 @@ image: postgres:15
 container\_name: postgres\_db
 environment:
 POSTGRES\_USER: sysgespecoledbb\_user
-POSTGRES\_PASSWORD: FK172bcjHNvAoqRaNUyDCeNw5f5r7aXU
-POSTGRES\_DB: sysgespecoledbb
+POSTGRES\_PASSWORD: 8jwnkidK8moic9uMaMx1BPaW9N20bse6
+POSTGRES\_DB: sysgespecoledbb_1iub
 ports:
 \- "5432:5432"
 restart: always
@@ -18,8 +18,8 @@ container\_name: spring\_app
 depends\_on:
 \- db
 environment:
-SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/sysgespecoledbb
+SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/sysgespecoledbb_1iub
 SPRING\_DATASOURCE\_USERNAME: sysgespecoledbb\_user
-SPRING\_DATASOURCE\_PASSWORD: FK172bcjHNvAoqRaNUyDCeNw5f5r7aXU
+SPRING\_DATASOURCE\_PASSWORD: 8jwnkidK8moic9uMaMx1BPaW9N20bse6
 ports:
 \- "8080:8080"
