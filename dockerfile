@@ -1,5 +1,5 @@
 # Étape de build
-FROM openjdk:17-alpine AS build
+FROM openjdk:11-alpine AS build
 RUN apk add --no-cache maven curl
 
 WORKDIR /app
@@ -13,7 +13,7 @@ COPY src/ src/
 RUN mvn clean package -DskipTests 
 
 # Étape de déploiement
-FROM openjdk:17
+FROM openjdk:11
 WORKDIR /app
 COPY --from=build /app/target/SYSGESPECOLE1-0.0.1-SNAPSHOT.jar app.jar
 
