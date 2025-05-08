@@ -1,1 +1,22 @@
+# Exported from Render on 2025-05-08T12:00:53Z
+databases:
+- name: SYSGESPECOLEDBB
+  databaseName: sysgespecoledbb_1iub
+  user: sysgespecoledbb_user
+  plan: free
+  region: oregon
+  ipAllowList:
+  - source: 0.0.0.0/32
+    description: everywhere
+  postgresMajorVersion: "15"
+services:
+- type: web
+  name: SYSGESPECOLEBACKEND
+  runtime: docker
+  repo: https://github.com/enochkaba12345/SYSGESPECOLEBACKEND
+  plan: free
+  region: oregon
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+version: "1"
 
