@@ -2,12 +2,12 @@
 version: "3.8"
 services:
 db:
-image: postgres:15
+image: postgres:16
 container\_name: postgres\_db
 environment:
-POSTGRES\_USER: sysgespecoledbb\_user
-POSTGRES\_PASSWORD: 8jwnkidK8moic9uMaMx1BPaW9N20bse6
-POSTGRES\_DB: sysgespecoledbb_1iub
+POSTGRES\_USER: bddsysgespecole\_user
+POSTGRES\_PASSWORD: L84pxZ3P6P0BCUekj5ffsfoQpZ51SWM5
+POSTGRES\_DB: bddsysgespecole
 ports:
 \- "5432:5432"
 restart: always
@@ -18,8 +18,8 @@ container\_name: spring\_app
 depends\_on:
 \- db
 environment:
-SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/sysgespecoledbb_1iub
-SPRING\_DATASOURCE\_USERNAME: sysgespecoledbb\_user
-SPRING\_DATASOURCE\_PASSWORD: 8jwnkidK8moic9uMaMx1BPaW9N20bse6
+SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/bddsysgespecole
+SPRING\_DATASOURCE\_USERNAME: bddsysgespecole\_user
+SPRING\_DATASOURCE\_PASSWORD: L84pxZ3P6P0BCUekj5ffsfoQpZ51SWM5
 ports:
 \- "8080:8080"
