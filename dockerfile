@@ -7,24 +7,24 @@ RUN apk add --no-cache maven curl
 # Créer le dossier de travail
 WORKDIR /app
 
-# Copier le fichier pom.xml et télécharger les dépendances
+# Précharger les dépendances Maven pour améliorer le cache Docker
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Copier le code source et compiler l’application
-COPY src/ src/
+# Copier tout le projet en une seule étape pour mieux gérer les modifications de fichiers
+COPY . .
 RUN mvn clean package -DskipTests
 
-# 🏗️ Étape 2 : Image finale minimale pour l'exécution
+# 🏗️ Étape 2 : Image minimale pour l'exécution
 FROM eclipse-temurin:17-alpine
 
 WORKDIR /app
 
-# Copier le jar compilé depuis l'image précédente
+# Copier uniquement le JAR compilé depuis l'image précédente
 COPY --from=build /app/target/SYSGESPECOLE1-0.0.1-SNAPSHOT.jar app.jar
 
 # Exposer le port attendu par Render
 EXPOSE 8080
 
-# ✅ Lancer l'application avec le bon host (Render fournit PORT via env var)
-CMD ["java", "-jar", "app.jar", "--server.port=8080", "--server.address=0.0.0.0"]
+# ✅ Utiliser la variable `PORT` fournie par Render au démarrage
+CMD ["java", "-jar", "app.jar", "--server.address=0.0.0.0", "--server.port=${PORT:-8080}"]
