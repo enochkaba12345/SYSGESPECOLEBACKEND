@@ -380,7 +380,7 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public List<PaiementDto> ImpressionRecuEleveAcomptes(long ideleve) {
-		 String basePath = "http://localhost:8080/logos/";
+		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
 	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
@@ -441,7 +441,7 @@ public class PaiementServiceImpl implements PaiementService{
 		}
 	
 	public List<PaiementDto> ImpressionRecuEleveSoldes(long ideleve) {
-		 String basePath = "http://localhost:8080/logos/";
+		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, " 
 	    		+ " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, "
 	    		+ " n.idpaiement, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, UPPER(n.categorie) AS categorie, "
@@ -518,7 +518,7 @@ public class PaiementServiceImpl implements PaiementService{
 		}
 	
 	public List<PaiementDto> ImpressionRecuModeEleveSoldes(long idpaiement) {
-		 String basePath = "http://localhost:8080/logos/";
+		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	    		+ "	a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, "
 	    		+ "	n.idpaiement, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, UPPER(n.categorie) AS categorie, "
@@ -594,7 +594,7 @@ public class PaiementServiceImpl implements PaiementService{
 		}
 	
 	public List<PaiementDto> ImpressionRecuModeEleveAcomptes(long idpaiement) {
-		 String basePath = "http://localhost:8080/logos/";
+		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
 	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
@@ -648,7 +648,7 @@ public class PaiementServiceImpl implements PaiementService{
 
 	
 	public List<PaiementDto> ImpressionRecuModeEleves(long idpaiement) {
-		 String basePath = "http://localhost:8080/logos/";
+		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
 	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
@@ -702,7 +702,7 @@ public class PaiementServiceImpl implements PaiementService{
 
 
 	public List<PaiementDto> searchPaiements(String nom, Long idecole, boolean isAdmin) {
-	    String basePath = "http://localhost:8080/uploads/";
+	   String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    StringBuilder query = new StringBuilder(
 	        "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe, " +
@@ -759,7 +759,7 @@ public class PaiementServiceImpl implements PaiementService{
 
 
 	public List<PaiementDto> PaiementDeleves(Long ideleve) {
-		 String basePath = "http://localhost:8080/uploads/";
+		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = " SELECT DISTINCT ON (n.idpaiement) " +
 	                   " UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe, b.ideleve, " +
 	                   " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, " +
@@ -804,7 +804,7 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public List<PaiementDto> CollectionPaiementModes(Long idpaiement) {
-		 String basePath = "http://localhost:8080/logos/";
+		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 		 String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
@@ -849,7 +849,7 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public List<PaiementDto> EcoleParClasses(Long idecole, Long idclasse, Long idannee) {
-	    String basePath = "http://localhost:8080/uploads/";
+	    String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    String query =
 	        "WITH PaiementsDistincts AS ( " +
@@ -924,7 +924,7 @@ public ResponseEntity<?> EcoleParClasse(Long idecole,Long idclasse,Long idannee)
 
 
 public List<PaiementDto> FichePaiementeleves(long ideleve) {
-	 String basePath = "http://localhost:8080/logos/";
+	String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	 String query = " SELECT DISTINCT ON (n.idpaiement) "+
     " UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe , UPPER(b.adresse) AS adresse, b.ideleve, "+ 
     " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "+ 
@@ -974,7 +974,7 @@ public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundExc
 
 
 public List<PaiementDto> FicheRecouvrementClasses(long idecole, long idclasse, long idannee) {
-	 String basePath = "http://localhost:8080/logos/";
+	String basePath = "https://sysgespecolebackend.onrender.com/log/";
     String query ="WITH PaiementsDistincts AS ( " +
         "    SELECT n.ideleve, SUM(n.montants) AS montants " +
         "    FROM tab_Paiement n " +
