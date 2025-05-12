@@ -36,24 +36,23 @@ public class LogosServiceImpl implements LogosService{
 	@Autowired 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	private static final String UPLOAD_DIR = "F:/logos/";
+	private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
 
-	
+
+
+
 	@Override
-	public Boolean createLogos(Logos logos) {
-	    if (logos == null || logos.getIdecole() == null) {
+	public Logos createLogos(Logos logos) {
+		 if (logos == null || logos.getIdecole() == null) {
 	        throw new IllegalArgumentException("logos ou ID ecole ne peut pas être null.");
 	    }
 
-	    
 	    Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
 	    if (ecoleData.isEmpty()) {
 	        System.err.println("Élève avec ID " + logos.getIdecole() + " introuvable.");
 	        return false;
 	    }
-
-	    
-	    Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
+		 Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
 	    if (existingLogos.isPresent()) {
 	        Logos logosToUpdate = existingLogos.get();
 	        logosToUpdate.setLogos(logos.getLogos());
@@ -66,7 +65,6 @@ public class LogosServiceImpl implements LogosService{
 
 	    return true;
 	}
-
 
 	
 	@Override
@@ -90,7 +88,7 @@ public class LogosServiceImpl implements LogosService{
 	
 	@Override
 	public List<LogosModelDto> collecteLogos(Long idecole) {
-	    String basePath = "http://localhost:8080/logos/";
+            String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    StringBuilder query = new StringBuilder();
 	    query.append("SELECT ")
