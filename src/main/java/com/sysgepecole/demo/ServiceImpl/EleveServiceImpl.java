@@ -63,18 +63,16 @@ public class EleveServiceImpl implements EleveService{
 	}
 	
 	
-	
 	@Override
-	public Eleve createEleve(Eleve eleve) {
-		Optional<Eleve> eleves = findEleveByNomPostnomPrenom(eleve.getNom(),eleve.getPostnom(),eleve.getPrenom(),eleve.getIdintermedaireclasse(),eleve.getIdintermedaireannee());
-		if (eleves.isPresent()) {
-		
-			} else {
-				
-				return eleverepository.save(eleve); 
-				}
-		return eleve;
+    public Eleve createEleve(Eleve eleve) {
+	    Optional<Eleve> eleves = findEleveByNomPostnomPrenom(eleve.getNom(),eleve.getPostnom(),eleve.getPrenom(),eleve.getIdintermedaireclasse(),eleve.getIdintermedaireannee());
+        if (eleves.isPresent()) {
+          } else {
+	return eleverepository.save(eleve); 
 	}
+		return eleve;
+        }
+	    
 	
 	
 	@Override
