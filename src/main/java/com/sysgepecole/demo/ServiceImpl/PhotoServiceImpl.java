@@ -49,7 +49,8 @@ public class PhotoServiceImpl implements PhotoService{
 	@Autowired 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	private static final String UPLOAD_DIR = "F:/uploads/";
+	private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
+	
 	
 	@Override
 	public Boolean createPhoto(Photo photo) {
@@ -97,8 +98,8 @@ public class PhotoServiceImpl implements PhotoService{
     }
 	
 	 public List<PhotoModelDto> CollectePhotos() {
-		 String basePath = "http://localhost:8080/uploads/";
-		 
+		
+		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	        String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	        		+ " UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, "
 	        		+ " UPPER(b.email) AS email, b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, "
@@ -135,7 +136,7 @@ public class PhotoServiceImpl implements PhotoService{
 	}
 	
 	 public List<PhotoModelDto> FichePhotos(long id) {
-		 String basePath = "http://localhost:8080/uploads/";
+		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 		 
 	    	String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,"
 	    			+ "UPPER(b.sexe) AS sexe, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,"
