@@ -28,7 +28,7 @@ public class FraisController {
     private FraisService fraisService;
 
 
-     @PostMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<Frais> createFrais(@RequestBody FraisDto fraisDto) {
         try {
             Frais frais = fraisService.saveFrais(fraisDto);
@@ -37,11 +37,6 @@ public class FraisController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    
-  
-    
-   
-    
     
     @PutMapping("/updateFrais/{idfrais}")
     public ResponseEntity<?> updateFrais(@PathVariable Long idfrais,@RequestBody FraisDto requestDto) {
