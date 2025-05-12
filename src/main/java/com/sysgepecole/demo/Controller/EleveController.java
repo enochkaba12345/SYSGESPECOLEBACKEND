@@ -33,15 +33,19 @@ public class EleveController {
 	@Autowired
 	private EleveService eleveService;
 
+	
+
 	@PostMapping("/createEleve")
-	public ResponseEntity<Eleve> createEleve(@RequestBody Eleve eleve) {
-		try {
-			Eleve createdEleve = eleveService.createEleve(eleve);
-			return ResponseEntity.ok(createdEleve);
-		} catch (RuntimeException e) {
-			return ResponseEntity.badRequest().body(null);
-		}
-	}
+    public ResponseEntity<?> createEleve(@RequestBody Eleve eleve) {
+        try {
+        	Eleve createdEleve = eleveService.createEleve(eleve);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdEleve);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la création de la relation intermédiaire: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.badRequest(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 
 	@PutMapping("/updateEleve/{ideleve}")
 	public ResponseEntity<Eleve> updateEleve(@PathVariable Long ideleve, @RequestBody Eleve eleve) {
