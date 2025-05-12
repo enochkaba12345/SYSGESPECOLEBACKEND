@@ -45,7 +45,7 @@ public class LogosController {
 	@PostMapping("/uploadlogos")
 public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
     try {
-        String uploadDir = "uploads/";
+        String uploadDir = "logs/";
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
