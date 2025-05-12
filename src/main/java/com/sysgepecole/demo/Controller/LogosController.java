@@ -32,17 +32,18 @@ public class LogosController {
 	
 	@Autowired
 	private LogosService logosService;
-	
+
+
 	@PostMapping("/createLogos")
-	public ResponseEntity<Boolean> createLogos(@RequestBody Logos logos) {
-		
-	    try {
-	        Boolean created = logosService.createLogos(logos);
-	        return ResponseEntity.ok(created);
-	    } catch (RuntimeException e) {
-	        return ResponseEntity.badRequest().body(false);
-	    }
-	}
+       public ResponseEntity<Boolean> createLogos(@RequestBody Logos logos) {
+       try {
+        Boolean created = logosService.createLogos(logos);
+        return ResponseEntity.ok(created);
+        } catch (RuntimeException e) {
+        return ResponseEntity.badRequest().body(false);
+       }
+    }
+
 
 	@PostMapping("/uploadlogos")
 public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
