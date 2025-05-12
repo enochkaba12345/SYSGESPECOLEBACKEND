@@ -33,16 +33,16 @@ public class LogosController {
 	@Autowired
 	private LogosService logosService;
 
-
 	@PostMapping("/createLogos")
-       public ResponseEntity<Boolean> createLogos(@RequestBody Logos logos) {
-       try {
-        Boolean created = logosService.createLogos(logos);
+	public ResponseEntity<?> createLogos(@RequestBody Logos logos) {
+   	 try {
+        Logos created = logosService.createLogos(logos);
         return ResponseEntity.ok(created);
-        } catch (RuntimeException e) {
-        return ResponseEntity.badRequest().body(false);
-       }
-    }
+    	    } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", "Erreur lors de la création de l’élève", "error", e.getMessage()));
+            }
+        }
 
 
 	@PostMapping("/uploadlogos")
