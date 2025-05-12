@@ -28,7 +28,7 @@ public class FraisController {
     private FraisService fraisService;
 
 
-    @PostMapping("/create")
+    @PostMapping("/createFrais")
     public ResponseEntity<Frais> createFrais(@RequestBody FraisDto fraisDto) {
         try {
             Frais frais = fraisService.saveFrais(fraisDto);
