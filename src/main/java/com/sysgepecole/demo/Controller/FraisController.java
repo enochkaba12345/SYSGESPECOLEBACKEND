@@ -27,16 +27,18 @@ public class FraisController {
     @Autowired
     private FraisService fraisService;
 
-
     @PostMapping("/createFrais")
-    public ResponseEntity<Frais> createFrais(@RequestBody FraisDto fraisDto) {
-        try {
-            Frais frais = fraisService.saveFrais(fraisDto);
-            return ResponseEntity.ok(frais);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
-    }
+    public ResponseEntity<?> createFrais(@RequestBody FraisDto fraisDto) {
+    try {
+        Frais frais = fraisService.saveFrais(fraisDto);
+        return ResponseEntity.ok(frais);
+      } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", "Erreur lors de la création des frais", "error", e.getMessage()));
+      }
+}
+
+	
     
     @PutMapping("/updateFrais/{idfrais}")
     public ResponseEntity<?> updateFrais(@PathVariable Long idfrais,@RequestBody FraisDto requestDto) {
