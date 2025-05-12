@@ -34,23 +34,21 @@ public class EleveController {
 	private EleveService eleveService;
 
 	
-
-@PostMapping
-	public ResponseEntity<Eleve> createEleve(@RequestBody Eleve eleve) {
-		try {
-			Eleve createdEleve = eleveService.createEleve(eleve);
-			return ResponseEntity.ok(createdEleve);
-		} catch (RuntimeException e) {
-			return ResponseEntity.badRequest().body(null);
-		}
-	}
+	@PostMapping("/createEleve")
+	public ResponseEntity<?> createEleve(@RequestBody Eleve eleve) {
+   	 try {
+        Eleve createdEleve = eleveService.createEleve(eleve);
+        return ResponseEntity.ok(createdEleve);
+    	    } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", "Erreur lors de la création de l’élève", "error", e.getMessage()));
+            }
+        }
 
 	@PutMapping("/updateEleve/{ideleve}")
 	public ResponseEntity<Eleve> updateEleve(@PathVariable Long ideleve, @RequestBody Eleve eleve) {
 		return eleveService.updateEleve(ideleve, eleve);
 	}
-
-
 
 	@GetMapping("/findEleve/{nom}/{postnom}/{prenom}/{idintermedaireclasse}/{idintermedaireannee}")
 	public Optional<Eleve> findEleve(@PathVariable String nom, @PathVariable String postnom,
