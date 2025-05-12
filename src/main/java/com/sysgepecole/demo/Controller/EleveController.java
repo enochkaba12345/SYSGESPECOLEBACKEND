@@ -33,7 +33,7 @@ public class EleveController {
 	@Autowired
 	private EleveService eleveService;
 
-	@PostMapping
+	@PostMapping("/createEleve")
 	public ResponseEntity<Eleve> createEleve(@RequestBody Eleve eleve) {
 		try {
 			Eleve createdEleve = eleveService.createEleve(eleve);
