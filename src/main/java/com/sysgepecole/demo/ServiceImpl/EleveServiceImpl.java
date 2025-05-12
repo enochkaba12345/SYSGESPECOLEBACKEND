@@ -105,7 +105,7 @@ public class EleveServiceImpl implements EleveService{
 	
 
 	  public List<EleveModelDto> CollecteEleves() {
-		  String basePath = "http://localhost:8080/logos/";
+		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	        String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,"
 	                + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,"
 	                + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,"
@@ -175,15 +175,15 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 }
     
     public List<EleveModelDto> FicheEleves(Long ideleve) {
-    	String basePath = "http://localhost:8080/logos/";
-    	String basePaths = "http://localhost:8080/uploads/";
+  
+	    	String basePath = "https://sysgespecolebackend.onrender.com/log/";
     	String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,"
     			+ "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,"
     			+ "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,"
     			+ "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, x.id,y.id, "
     			+ "h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee,UPPER(a.avenue) AS avenue,UPPER(z.username) AS username, "
     			+ "CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos, "
-    			+ "CONCAT('" + basePaths + "', CASE WHEN y.photo IS NOT NULL AND y.photo != '' THEN UPPER(y.photo) ELSE 'icon.jpg' END) AS photo "
+    			+ "CONCAT('" + basePath + "', CASE WHEN y.photo IS NOT NULL AND y.photo != '' THEN UPPER(y.photo) ELSE 'icon.jpg' END) AS photo "
     			+ " FROM tab_Eleve b"
     			+ "	JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse"
     			+ "	JOIN tab_Classe e ON c.idclasse = e.idclasse"
@@ -243,7 +243,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	
 	
 	public List<EleveModelDto> searchEleves(String nom, Long idecole, boolean isAdmin) {
-	    String basePath = "http://localhost:8080/uploads/";
+	  String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	                 + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	                 + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
@@ -292,7 +292,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 
 	
 	public List<EleveModelDto> CollecteAnneeEleves(long idintermedaireclasse, long idintermedaireannee) {
-	    String basePath = "http://localhost:8080/uploads/";
+	   String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	            + " UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
@@ -366,7 +366,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	}
 
 	public List<EleveModelDto> EleveParClasses(long idecole, long idclasse, long idannee) {
-	    String basePath = "http://localhost:8080/uploads/";
+	    String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	            + " UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
@@ -410,7 +410,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	}
 
 	public List<EleveModelDto> ElevePars(long idecole, long idclasse, long idannee, long ideleve) {
-		  String basePath = "http://localhost:8080/uploads/";
+		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = " SELECT  b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	                 + " UPPER(b.sexe) AS sexe, UPPER(b.adresse) AS adresse, b.telephone,"
 	                 + " a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, "
@@ -454,7 +454,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 
 
 	public List<EleveModelDto> FicheClasses(long idecole, long idclasse) {
-		String basePaths = "http://localhost:8080/logos/";
+		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT b.ideleve, UPPER(b.nom) || ' ' || UPPER(b.postnom) || ' ' || UPPER(b.prenom) AS noms, "
 	                 + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	                 + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
