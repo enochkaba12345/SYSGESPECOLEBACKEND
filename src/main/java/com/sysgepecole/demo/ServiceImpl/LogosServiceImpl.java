@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.beans.factory.annotation.Value;
 
 import com.sysgepecole.demo.Dto.LogosModelDto;
 import com.sysgepecole.demo.Models.Ecole;
@@ -38,13 +38,16 @@ public class LogosServiceImpl implements LogosService{
 	
 	//private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
         //private static final String UPLOAD_DIR = "C:/logos/";
-	private static final String UPLOAD_DIR = "/home/user/logos/";
+	//private static final String UPLOAD_DIR = "/home/user/logos/";
+  
+	  @Value("${upload.dir}")
+          private String uploadDir;
 
 
 
 
 	@Override
-public Logos createLogos(Logos logos) {
+        public Logos createLogos(Logos logos) {
     if (logos == null || logos.getIdecole() == null) {
         throw new IllegalArgumentException("logos ou ID ecole ne peut pas être null.");
     }
@@ -52,7 +55,7 @@ public Logos createLogos(Logos logos) {
     Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
     if (ecoleData.isEmpty()) {
         System.err.println("École avec ID " + logos.getIdecole() + " introuvable.");
-        return null; // ✅ Ajout d'un retour en cas d'ID introuvable
+        return null;
     }
 
     Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
@@ -69,18 +72,16 @@ public Logos createLogos(Logos logos) {
 
 
 	
-	@Override
-    public String uploadLogos(MultipartFile logos) throws IOException {
-       
-        File uploadDir = new File(UPLOAD_DIR);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
-        }
+public String uploadLogos(MultipartFile logos) throws IOException {
+        Path uploadPath = Paths.get(uploadDir);
+        Files.createDirectories(uploadPath);
 
-        String filename = System.currentTimeMillis() + "-" + logos.getOriginalFilename();
-        File file = new File(UPLOAD_DIR + filename);
+        String originalFilename = Paths.get(logos.getOriginalFilename()).getFileName().toString();
+        String filename = System.currentTimeMillis() + "-" + originalFilename;
 
-        logos.transferTo(file);
+        Path filePath = uploadPath.resolve(filename);
+
+        logos.transferTo(filePath.toFile());
 
         return filename;
     }
