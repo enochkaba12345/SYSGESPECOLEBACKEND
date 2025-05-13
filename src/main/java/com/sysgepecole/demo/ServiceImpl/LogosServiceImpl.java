@@ -74,7 +74,7 @@ public Logos createLogos(Logos logos) {
        
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
-            uploadDir.mkdir();
+            uploadDir.mkdirs();
         }
 
         String filename = System.currentTimeMillis() + "-" + logos.getOriginalFilename();
