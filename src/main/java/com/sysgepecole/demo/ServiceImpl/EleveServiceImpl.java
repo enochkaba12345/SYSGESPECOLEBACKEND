@@ -460,7 +460,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	                 + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
 	                 + "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province,y.id, "
 	                 + "h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee, UPPER(a.avenue) AS avenue, UPPER(z.username) AS username, "
-	                 + "CONCAT('" + basePaths + "', CASE WHEN y.logos IS NOT NULL AND y.logos != '' THEN UPPER(y.logos) ELSE 'logo.jpg' END) AS logos "
+	                 + "CONCAT('" + basePath + "', CASE WHEN y.logos IS NOT NULL AND y.logos != '' THEN UPPER(y.logos) ELSE 'logo.jpg' END) AS logos "
 	                 + "FROM tab_Eleve b "
 	                 + "LEFT JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + "LEFT JOIN tab_Classe e ON c.idclasse = e.idclasse "
