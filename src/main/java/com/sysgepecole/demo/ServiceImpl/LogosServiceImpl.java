@@ -36,8 +36,8 @@ public class LogosServiceImpl implements LogosService{
 	@Autowired 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
-
+	//private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
+        private static final String UPLOAD_DIR = "C:/logos/";
 
 
 
@@ -88,7 +88,7 @@ public class LogosServiceImpl implements LogosService{
 	
 	@Override
 	public List<LogosModelDto> collecteLogos(Long idecole) {
-            String basePath = "https://sysgespecolebackend.onrender.com/log/";
+            String basePath = "https://sysgespecolebackend.onrender.com/logos/";
 
 	    StringBuilder query = new StringBuilder();
 	    query.append("SELECT ")
