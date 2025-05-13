@@ -50,7 +50,7 @@ public class LogosServiceImpl implements LogosService{
 	    Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
 	    if (ecoleData.isEmpty()) {
 	        System.err.println("Élève avec ID " + logos.getIdecole() + " introuvable.");
-	        return false;
+	       
 	    }
 		 Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
 	    if (existingLogos.isPresent()) {
@@ -63,7 +63,7 @@ public class LogosServiceImpl implements LogosService{
 	    	logosrepository.save(logos);
 	    }
 
-	    return true;
+	   
 	}
 
 	
