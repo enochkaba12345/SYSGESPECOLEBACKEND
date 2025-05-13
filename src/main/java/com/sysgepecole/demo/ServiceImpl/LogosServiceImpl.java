@@ -42,29 +42,29 @@ public class LogosServiceImpl implements LogosService{
 
 
 	@Override
-	public Logos createLogos(Logos logos) {
-		 if (logos == null || logos.getIdecole() == null) {
-	        throw new IllegalArgumentException("logos ou ID ecole ne peut pas être null.");
-	    }
+public Logos createLogos(Logos logos) {
+    if (logos == null || logos.getIdecole() == null) {
+        throw new IllegalArgumentException("logos ou ID ecole ne peut pas être null.");
+    }
 
-	    Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
-	    if (ecoleData.isEmpty()) {
-	        System.err.println("Élève avec ID " + logos.getIdecole() + " introuvable.");
-	       
-	    }
-		 Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
-	    if (existingLogos.isPresent()) {
-	        Logos logosToUpdate = existingLogos.get();
-	        logosToUpdate.setLogos(logos.getLogos());
-	        logosToUpdate.setIduser(logos.getIduser());
-	        logosToUpdate.setIdecole(logos.getIdecole());
-	        logosrepository.save(logosToUpdate);
-	    } else {
-	    	logosrepository.save(logos);
-	    }
+    Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
+    if (ecoleData.isEmpty()) {
+        System.err.println("École avec ID " + logos.getIdecole() + " introuvable.");
+        return null; // ✅ Ajout d'un retour en cas d'ID introuvable
+    }
 
-	   
-	}
+    Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
+    if (existingLogos.isPresent()) {
+        Logos logosToUpdate = existingLogos.get();
+        logosToUpdate.setLogos(logos.getLogos());
+        logosToUpdate.setIduser(logos.getIduser());
+        logosToUpdate.setIdecole(logos.getIdecole());
+        return logosrepository.save(logosToUpdate); 
+    } else {
+        return logosrepository.save(logos); 
+    }
+}
+
 
 	
 	@Override
