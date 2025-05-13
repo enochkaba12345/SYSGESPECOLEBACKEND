@@ -37,7 +37,9 @@ public class LogosServiceImpl implements LogosService{
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	//private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
-        private static final String UPLOAD_DIR = "C:/logos/";
+        //private static final String UPLOAD_DIR = "C:/logos/";
+	private static final String UPLOAD_DIR = "/home/user/logos/";
+
 
 
 
