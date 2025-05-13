@@ -45,24 +45,33 @@ public class LogosController {
         }
 
 
-	@PostMapping("/uploadlogos")
-public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
-    try {
-        String uploadDir = "logs/";
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-        Path filePath = uploadPath.resolve(logos.getOriginalFilename());
-        Files.copy(logos.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-        return ResponseEntity.ok(Map.of("message", "Logo uploadé avec succès", "filename", logos.getOriginalFilename()));
-    } catch (IOException e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("error", "Erreur lors de l'enregistrement du fichier", "details", e.getMessage()));
-    }
-     }
-
+//	@PostMapping("/uploadlogos")
+//public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
+ //   try {
+     //    String uploadDir = "logs/";
+    //     Path uploadPath = Paths.get(uploadDir);
+      //   if (!Files.exists(uploadPath)) {
+      //       Files.createDirectories(uploadPath);
+      //  }
+      //   Path filePath = uploadPath.resolve(logos.getOriginalFilename());
+      //   Files.copy(logos.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+       //  return ResponseEntity.ok(Map.of("message", "Logo uploadé avec succès", "filename", logos.getOriginalFilename()));
+   //  } catch (IOException e) {
+    //     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+     //            .body(Map.of("error", "Erreur lors de l'enregistrement du fichier", "details", e.getMessage()));
+    // }
+    //  }
+	
+          @PostMapping("/uploadlogos")
+	    public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
+	        try {
+	            String filename = logosService.uploadLogos(logos);
+	            return ResponseEntity.ok(Map.of("filename", filename));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return ResponseEntity.status(500).body("Erreur lors du téléchargement de la photo.");
+	        }
+	    }
  
 	 @GetMapping("/collecteLogo")
 	 public ResponseEntity<?> collecteLogo(@RequestParam(required = false) Long idecole) {
