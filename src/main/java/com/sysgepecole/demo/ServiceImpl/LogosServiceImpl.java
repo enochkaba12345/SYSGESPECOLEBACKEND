@@ -26,7 +26,14 @@ import com.cloudinary.utils.ObjectUtils;
 @Service
 public class LogosServiceImpl implements LogosService {
 
-    
+   
+    private final Cloudinary cloudinary;
+
+
+    @Autowired
+    public LogosServiceImpl(Cloudinary cloudinary) {
+        this.cloudinary = cloudinary;
+    }
 
     @Autowired
     private EcoleRepository ecolerepository;
@@ -37,15 +44,7 @@ public class LogosServiceImpl implements LogosService {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     
-   @Autowired
-    public LogosServiceImpl(Cloudinary cloudinary) {
-    this.cloudinary = cloudinary;
-    }
 
-
-    /**
-     * Crée ou met à jour un logo pour une école, en enregistrant uniquement le public_id
-     */
     @Override
     public Logos createLogos(Logos logos, MultipartFile file) throws IOException {
         if (logos == null || logos.getIdecole() == null) {
@@ -59,7 +58,7 @@ public class LogosServiceImpl implements LogosService {
 
         // Upload l’image sur Cloudinary et récupère le public_id
         String imagePublicId = uploadLogos(file);
-        logos.setLogos(imagePublicId); // Ex : logosecole/image_xyz
+        logos.setLogos(imagePublicId); 
 
         // Si un logo existe déjà, on le met à jour
         Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
@@ -74,20 +73,13 @@ public class LogosServiceImpl implements LogosService {
         }
     }
 
-    /**
-     * Upload une image dans Cloudinary (dossier: logosecole)
-     * @return public_id de l’image
-     */
     public String uploadLogos(MultipartFile logos) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(logos.getBytes(), ObjectUtils.asMap(
             "folder", "logosecole"
         ));
-        return (String) uploadResult.get("public_id");  // ex: logosecole/monimage_xyz
+        return (String) uploadResult.get("public_id"); 
     }
 
-    /**
-     * Collecte la liste des logos avec URL complète construite dynamiquement
-     */
     @Override
     public List<LogosModelDto> collecteLogos(Long idecole) {
         String basePath = "https://res.cloudinary.com/dx7zvvxtw/image/upload/";
