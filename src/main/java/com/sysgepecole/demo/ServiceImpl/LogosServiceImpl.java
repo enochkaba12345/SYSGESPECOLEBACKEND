@@ -26,7 +26,7 @@ import com.cloudinary.utils.ObjectUtils;
 @Service
 public class LogosServiceImpl implements LogosService {
 
-    private final Cloudinary cloudinary;
+    
 
     @Autowired
     private EcoleRepository ecolerepository;
@@ -37,10 +37,11 @@ public class LogosServiceImpl implements LogosService {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     
-    @Autowired
+   @Autowired
     public LogosServiceImpl(Cloudinary cloudinary) {
-        this.cloudinary = cloudinary;
+    this.cloudinary = cloudinary;
     }
+
 
     /**
      * Crée ou met à jour un logo pour une école, en enregistrant uniquement le public_id
