@@ -36,7 +36,7 @@ public class LogosController {
 
 	@PostMapping("/createLogos")
 public ResponseEntity<?> createLogos(
-        @RequestParam("file") MultipartFile file,
+        @RequestParam("logos") MultipartFile logos,
         @RequestParam("idecole") Long idecole,
         @RequestParam("iduser") Long iduser
 ) {
