@@ -1,4 +1,4 @@
-package com.sysgepecole.demo.Security; 
+package com.sysgepecole.demo.Security;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -22,7 +22,7 @@ public class CloudinaryConfig {
 
     @Bean
     public Cloudinary cloudinary() {
-        Map config = ObjectUtils.asMap(
+        Map<String, String> config = ObjectUtils.asMap(
             "cloud_name", cloudName,
             "api_key", apiKey,
             "api_secret", apiSecret
