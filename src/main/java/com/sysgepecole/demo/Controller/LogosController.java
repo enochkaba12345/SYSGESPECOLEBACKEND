@@ -33,60 +33,41 @@ public class LogosController {
 	@Autowired
 	private LogosService logosService;
 
-
 	@PostMapping("/createLogos")
-  public ResponseEntity<?> createLogos(@RequestBody Logos logos) {
-    if (logos.getIdecole() == null || logos.getLogos() == null || logos.getIduser() == null) {
-        return ResponseEntity.badRequest().body(Map.of("error", "Données invalides"));
-    }
+public ResponseEntity<?> createLogos(@RequestParam("file") MultipartFile file, @RequestParam("idecole") Long idecole, @RequestParam("iduser") Long iduser) {
     try {
-        logosService.createLogos(logos);
+        Logos logos = new Logos();
+        logos.setIdecole(idecole);
+        logos.setIduser(iduser);
+
+        Logos savedLogos = logosService.createLogos(logos, file);
         return ResponseEntity.ok(Map.of("message", "Logo enregistré avec succès"));
-    } catch (Exception e) {
+    } catch (IOException e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("error", "Échec de l'enregistrement", "details", e.getMessage()));
     }
 }
 
+	@PostMapping("/uploadlogos")
+public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
+    try {
+        String filename = logosService.uploadLogos(logos);
+        return ResponseEntity.ok(Map.of("filename", filename));
+    } catch (IOException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("error", "Erreur lors du téléchargement", "details", e.getMessage()));
+    }
+}
 
+ @GetMapping("/collecteLogo")
+public ResponseEntity<?> collecteLogo(@RequestParam(required = false) Long idecole) {
+    List<LogosModelDto> collections = logosService.collecteLogos(idecole);
 
+    if (collections.isEmpty()) {
+        return ResponseEntity.ok(Map.of("message", "Aucune école trouvée", "logos", Collections.emptyList()));
+    } else {
+        return ResponseEntity.ok(Map.of("logos", collections));
+    }
+}
 
-//	@PostMapping("/uploadlogos")
-//public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
- //   try {
-     //    String uploadDir = "logs/";
-    //     Path uploadPath = Paths.get(uploadDir);
-      //   if (!Files.exists(uploadPath)) {
-      //       Files.createDirectories(uploadPath);
-      //  }
-      //   Path filePath = uploadPath.resolve(logos.getOriginalFilename());
-      //   Files.copy(logos.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-       //  return ResponseEntity.ok(Map.of("message", "Logo uploadé avec succès", "filename", logos.getOriginalFilename()));
-   //  } catch (IOException e) {
-    //     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-     //            .body(Map.of("error", "Erreur lors de l'enregistrement du fichier", "details", e.getMessage()));
-    // }
-    //  }
-	
-          @PostMapping("/uploadlogos")
-	    public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos) {
-	        try {
-	            String filename = logosService.uploadLogos(logos);
-	            return ResponseEntity.ok(Map.of("filename", filename));
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            return ResponseEntity.status(500).body("Erreur lors du téléchargement de la photo.");
-	        }
-	    }
- 
-	 @GetMapping("/collecteLogo")
-	 public ResponseEntity<?> collecteLogo(@RequestParam(required = false) Long idecole) {
-	        List<LogosModelDto> collections = logosService.collecteLogos(idecole);
-
-	        if (collections.isEmpty()) {
-	            return ResponseEntity.status(404).body("Aucune école trouvée.");
-	        } else {
-	            return ResponseEntity.ok(collections);
-	        }
-	    }
 }
