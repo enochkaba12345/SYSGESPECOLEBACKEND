@@ -44,33 +44,34 @@ public class LogosServiceImpl implements LogosService {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     
 
-    @Override
-    public Logos createLogos(Logos logos, MultipartFile file) throws IOException {
-        if (logos == null || logos.getIdecole() == null) {
-            throw new IllegalArgumentException("Logos ou ID école ne peut pas être null.");
-        }
+   @Override
+	public Boolean createLogos(Logos logos) {
+	    if (logos == null || logos.getIdecole() == null) {
+	        throw new IllegalArgumentException("logos ou ID ecole ne peut pas être null.");
+	    }
 
-        Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
-        if (ecoleData.isEmpty()) {
-            throw new IllegalArgumentException("École avec ID " + logos.getIdecole() + " introuvable.");
-        }
+	    
+	    Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
+	    if (ecoleData.isEmpty()) {
+	        System.err.println("Élève avec ID " + logos.getIdecole() + " introuvable.");
+	        return false;
+	    }
 
-        // Upload l’image sur Cloudinary et récupère le public_id
-        String imagePublicId = uploadLogos(file);
-        logos.setLogos(imagePublicId); 
+	    
+	    Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
+	    if (existingLogos.isPresent()) {
+	        Logos logosToUpdate = existingLogos.get();
+	        logosToUpdate.setLogos(logos.getLogos());
+	        logosToUpdate.setIduser(logos.getIduser());
+	        logosToUpdate.setIdecole(logos.getIdecole());
+	        logosrepository.save(logosToUpdate);
+	    } else {
+	    	logosrepository.save(logos);
+	    }
 
-        // Si un logo existe déjà, on le met à jour
-        Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
-        if (existingLogos.isPresent()) {
-            Logos logosToUpdate = existingLogos.get();
-            logosToUpdate.setLogos(imagePublicId);
-            logosToUpdate.setIduser(logos.getIduser());
-            logosToUpdate.setIdecole(logos.getIdecole());
-            return logosrepository.save(logosToUpdate);
-        } else {
-            return logosrepository.save(logos);
-        }
-    }
+	    return true;
+	}
+
 
     public String uploadLogos(MultipartFile logos) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(logos.getBytes(), ObjectUtils.asMap(
