@@ -13,7 +13,7 @@ import com.sysgepecole.demo.Models.Logos;
 public interface LogosService {
 	
 	 String uploadLogos(MultipartFile logos) throws IOException;
-	 Logos createLogos(Logos logos, MultipartFile file) throws IOException;
+	 Boolean createLogos(Logos logos);
 	 List<LogosModelDto> collecteLogos(Long idecole);
 	 
 
