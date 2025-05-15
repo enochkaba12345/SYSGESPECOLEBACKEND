@@ -29,7 +29,6 @@ public class LogosServiceImpl implements LogosService {
    
     private final Cloudinary cloudinary;
 
-
     @Autowired
     public LogosServiceImpl(Cloudinary cloudinary) {
         this.cloudinary = cloudinary;
@@ -77,7 +76,7 @@ public class LogosServiceImpl implements LogosService {
         Map uploadResult = cloudinary.uploader().upload(logos.getBytes(), ObjectUtils.asMap(
             "folder", "logosecole"
         ));
-        return (String) uploadResult.get("public_id"); 
+        return (String) uploadResult.get("secure_url");
     }
 
     @Override
