@@ -10,11 +10,14 @@ import com.sysgepecole.demo.Dto.LogosModelDto;
 import com.sysgepecole.demo.Models.Logos;
 
 
+public interface LogosService {
+    Logos createLogos(Logos logos, MultipartFile file) throws IOException;
+}
 
 public interface LogosService {
 	
 	 String uploadLogos(MultipartFile logos) throws IOException;
-	 Logos createLogos(Logos logos);
+	 Logos createLogos(Logos logos, MultipartFile file) throws IOException;
 	 List<LogosModelDto> collecteLogos(Long idecole);
 	 
 
