@@ -45,7 +45,7 @@ public ResponseEntity<?> createLogos(
         logos.setIdecole(idecole);
         logos.setIduser(iduser);
 
-        Logos saved = logosService.createLogos(logos, file);
+        Logos saved = logosService.createLogos(logos, logos);
         return ResponseEntity.ok(saved);
     } catch (Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
