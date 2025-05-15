@@ -36,7 +36,8 @@ public class LogosServiceImpl implements LogosService {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+    
+    @Autowired
     public LogosServiceImpl(Cloudinary cloudinary) {
         this.cloudinary = cloudinary;
     }
