@@ -25,11 +25,18 @@ import com.sysgepecole.demo.Repository.EcoleRepository;
 import com.sysgepecole.demo.Repository.LogosRepository;
 import com.sysgepecole.demo.Service.LogosService;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 
 @Service
 public class LogosServiceImpl implements LogosService{
-	
+
+	 private final Cloudinary cloudinary;
+
+         public CloudinaryService(Cloudinary cloudinary) {
+        this.cloudinary = cloudinary;
+        }
 	
 	@Autowired
 	private EcoleRepository ecolerepository;
@@ -40,9 +47,7 @@ public class LogosServiceImpl implements LogosService{
 	@Autowired 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	//private static final String UPLOAD_DIR = "https://sysgespecolebackend.onrender.com/log/";
-        //private static final String UPLOAD_DIR = "C:/logos/";
-	//private static final String UPLOAD_DIR = "/home/user/logos/";
+	
   
 	  @Value("${upload.dir}")
           private String uploadDir;
@@ -51,21 +56,24 @@ public class LogosServiceImpl implements LogosService{
 
 
 	@Override
-        public Logos createLogos(Logos logos) {
+public Logos createLogos(Logos logos, MultipartFile file) throws IOException {
     if (logos == null || logos.getIdecole() == null) {
-        throw new IllegalArgumentException("logos ou ID ecole ne peut pas être null.");
+        throw new IllegalArgumentException("Logos ou ID école ne peut pas être null.");
     }
 
     Optional<Ecole> ecoleData = ecolerepository.findById(logos.getIdecole());
     if (ecoleData.isEmpty()) {
-        System.err.println("École avec ID " + logos.getIdecole() + " introuvable.");
-        return null;
+        throw new IllegalArgumentException("École avec ID " + logos.getIdecole() + " introuvable.");
     }
+
+
+    String imageName = uploadLogos(file);
+    logos.setLogos(imageName); 
 
     Optional<Logos> existingLogos = logosrepository.findByIdecole(logos.getIdecole());
     if (existingLogos.isPresent()) {
         Logos logosToUpdate = existingLogos.get();
-        logosToUpdate.setLogos(logos.getLogos());
+        logosToUpdate.setLogos(imageName);
         logosToUpdate.setIduser(logos.getIduser());
         logosToUpdate.setIdecole(logos.getIdecole());
         return logosrepository.save(logosToUpdate); 
@@ -74,28 +82,23 @@ public class LogosServiceImpl implements LogosService{
     }
 }
 
+  public String uploadLogos(MultipartFile logos) throws IOException {
+    Map uploadResult = cloudinary.uploader().upload(logos.getBytes(), ObjectUtils.asMap(
+        "folder", "logosecole"
+    ));
+    return (String) uploadResult.get("secure_url"); 
+  }
+
 
 	
-public String uploadLogos(MultipartFile logos) throws IOException {
-        Path uploadPath = Paths.get(uploadDir);
-        Files.createDirectories(uploadPath);
 
-        String originalFilename = Paths.get(logos.getOriginalFilename()).getFileName().toString();
-        String filename = System.currentTimeMillis() + "-" + originalFilename;
-
-        Path filePath = uploadPath.resolve(filename);
-
-        logos.transferTo(filePath.toFile());
-
-        return filename;
-    }
 	
 
 	 
 	
 	@Override
 	public List<LogosModelDto> collecteLogos(Long idecole) {
-            String basePath = "https://sysgespecolebackend.onrender.com/logos/";
+		String basePath = "https://res.cloudinary.com/dx7zvvxtw/image/upload/logosecole/";
 
 	    StringBuilder query = new StringBuilder();
 	    query.append("SELECT ")
