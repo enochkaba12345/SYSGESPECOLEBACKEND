@@ -18,6 +18,7 @@ public class WebConfig implements WebMvcConfigurer{
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
+			.allowedOriginPatterns("http://localhost:4200")
                         .allowedOriginPatterns("https://sysgespecoles.netlify.app") // 
                         .allowedMethods("HEAD","OPTION","GET","POST","PUT","PATCH","DELETE")
                         .allowedHeaders("*")
@@ -32,6 +33,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public CorsFilter corsFilter() {
 	    CorsConfiguration config = new CorsConfiguration();
 	    config.setAllowCredentials(true);
+	  config.addAllowedOrigin("http://localhost:4200"); 
 	    config.addAllowedOrigin("https://sysgespecoles.netlify.app"); 
 	    config.addAllowedHeader("*"); 
 	    config.addAllowedMethod("*"); 
