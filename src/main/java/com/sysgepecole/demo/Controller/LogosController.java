@@ -58,15 +58,16 @@ public ResponseEntity<?> uploadlogos(@RequestParam("logos") MultipartFile logos)
     }
 }
 
- @GetMapping("/collecteLogo")
-public ResponseEntity<?> collecteLogo(@RequestParam(required = false) Long idecole) {
-    List<LogosModelDto> collections = logosService.collecteLogos(idecole);
 
-    if (collections.isEmpty()) {
-        return ResponseEntity.ok(Map.of("message", "Aucune école trouvée", "logos", Collections.emptyList()));
-    } else {
-        return ResponseEntity.ok(Map.of("logos", collections));
-    }
-}
+	@GetMapping("/collecteLogo")
+	 public ResponseEntity<?> collecteLogo(@RequestParam(required = false) Long idecole) {
+	        List<LogosModelDto> collections = logosService.collecteLogos(idecole);
+
+	        if (collections.isEmpty()) {
+	            return ResponseEntity.status(404).body("Aucune école trouvée.");
+	        } else {
+	            return ResponseEntity.ok(collections);
+	        }
+	    }
 
 }
