@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "com.sysgepecole.demo")
 public class SysgespecoleApplication {
 
 	public static void main(String[] args) {
