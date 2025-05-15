@@ -35,23 +35,16 @@ public class LogosController {
 	private LogosService logosService;
 
 	@PostMapping("/createLogos")
-public ResponseEntity<?> createLogos(
-        @RequestParam("logos") MultipartFile logos,
-        @RequestParam("idecole") Long idecole,
-        @RequestParam("iduser") Long iduser
-) {
-    try {
-        Logos logos = new Logos();
-        logos.setIdecole(idecole);
-        logos.setIduser(iduser);
+	public ResponseEntity<Boolean> createLogos(@RequestBody Logos logos) {
+		
+	    try {
+	        Boolean created = logosService.createLogos(logos);
+	        return ResponseEntity.ok(created);
+	    } catch (RuntimeException e) {
+	        return ResponseEntity.badRequest().body(false);
+	    }
+	}
 
-        Logos saved = logosService.createLogos(logos, logos);
-        return ResponseEntity.ok(saved);
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erreur: " + e.getMessage());
-    }
-}
 
 
 	@PostMapping("/uploadlogos")
