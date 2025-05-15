@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.sysgepecole.demo")
+@ComponentScan(basePackages = {"com.sysgepecole.demo", "com.sysgepecole.demo.Security"})
 public class SysgespecoleApplication {
 
 	public static void main(String[] args) {
