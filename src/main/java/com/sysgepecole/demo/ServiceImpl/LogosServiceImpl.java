@@ -33,10 +33,6 @@ import com.cloudinary.utils.ObjectUtils;
 public class LogosServiceImpl implements LogosService{
 
 	 private final Cloudinary cloudinary;
-
-         public CloudinaryService(Cloudinary cloudinary) {
-        this.cloudinary = cloudinary;
-        }
 	
 	@Autowired
 	private EcoleRepository ecolerepository;
