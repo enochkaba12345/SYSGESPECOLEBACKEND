@@ -109,20 +109,12 @@
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-<dependency>
-    <groupId>com.twilio.sdk</groupId>
-    <artifactId>twilio</artifactId>
-    <version>8.31.1</version>
-</dependency>
-<dependency>
-    <groupId>com.google.cloud</groupId>
-    <artifactId>google-cloud-storage</artifactId>
-    <version>2.20.1</version> <!-- Vérifie la dernière version disponible -->
-</dependency>
-
-
-
-
+               <dependency>
+                        <dependency>
+                        <groupId>com.cloudinary</groupId>
+                        <artifactId>cloudinary-http44</artifactId>
+                         <version>1.33.0</version>
+                       </dependency>
 	</dependencies>
 
 	<build>
