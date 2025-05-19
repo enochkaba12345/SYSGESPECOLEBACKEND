@@ -724,7 +724,7 @@ public class PaiementServiceImpl implements PaiementService{
 	                 JOIN tab_User z ON z.iduser = n.iduser 
 	                 LEFT JOIN tab_Logos x ON x.idecole = a.idecole 
 	                 WHERE n.idpaiement = :idpaiement 
-	                 GROUP BY b.ideleve, a.idecole, e.idclasse,x.id, h.idcommune, m.idprovince,z.iduser, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, l.idtranche, n.idpaiement, d2.idfrais "
+	                 GROUP BY b.ideleve, a.idecole, e.idclasse,x.id, h.idcommune, m.idprovince,z.iduser, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, l.idtranche, n.idpaiement, d2.idfrais 
 	                 ORDER BY n.idpaiement LIMIT 1
         """;
 	    MapSqlParameterSource parameters = new MapSqlParameterSource().addValue("idpaiement", idpaiement);
