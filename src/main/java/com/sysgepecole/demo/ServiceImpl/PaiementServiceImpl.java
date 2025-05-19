@@ -32,6 +32,7 @@ import com.sysgepecole.demo.Service.PaiementService;
 
 import org.springframework.core.io.ClassPathResource;
 import java.io.InputStream;
+import java.io.IOException;
 import net.sf.jasperreports.engine.JasperReport;
 
 import net.sf.jasperreports.engine.JRException;
