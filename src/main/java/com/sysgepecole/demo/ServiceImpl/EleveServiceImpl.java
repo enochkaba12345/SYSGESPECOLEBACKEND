@@ -174,27 +174,30 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 }
     
     public List<EleveModelDto> FicheEleves(Long ideleve) {
-  
-    	String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,"
-    			+ "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,"
-    			+ "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,"
-    			+ "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, x.id,y.id, "
-    			+ "h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee,UPPER(a.avenue) AS avenue,UPPER(z.username) AS username, "
-    			+ " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, "
-    			+ " COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
-    			+ " FROM tab_Eleve b"
-    			+ "	JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse"
-    			+ "	JOIN tab_Classe e ON c.idclasse = e.idclasse"
-    			+ " JOIN tab_Ecole a ON c.idecole = a.idecole"
-    			+ "	JOIN tab_Intermedaireannee d ON b.idintermedaireannee = d.idintermedaireannee"
-    			+ "	JOIN tab_Annee f ON d.idannee = f.idannee"
-    			+ "	JOIN tab_User z ON z.iduser = b.iduser"
-    			+ " JOIN tab_Province g ON b.idprovince = g.idprovince"
-    			+ " JOIN tab_Commune h ON h.idcommune = a.idcommune"
-    			+ " LEFT JOIN tab_Logos x ON x.idecole = a.idecole "
-    			+ " LEFT JOIN tab_Photo y ON y.ideleve = b.ideleve "
-                + " where b.ideleve = :ideleve " 
-                + " ORDER BY b.ideleve limit 1";
+   String query = """
+          SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,
+    			UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,
+    			b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,
+    			c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, x.id,y.id, "
+    			h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee,UPPER(a.avenue) AS avenue,UPPER(z.username) AS username, 
+    			 COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, 
+    			 COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo 
+    			 FROM tab_Eleve b
+    				JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse
+    				JOIN tab_Classe e ON c.idclasse = e.idclasse
+    			 JOIN tab_Ecole a ON c.idecole = a.idecole
+    				JOIN tab_Intermedaireannee d ON b.idintermedaireannee = d.idintermedaireannee
+    				JOIN tab_Annee f ON d.idannee = f.idannee
+    				JOIN tab_User z ON z.iduser = b.iduser
+    			 JOIN tab_Province g ON b.idprovince = g.idprovince
+    			 JOIN tab_Commune h ON h.idcommune = a.idcommune
+    			 LEFT JOIN tab_Logos x ON x.idecole = a.idecole 
+    			 LEFT JOIN tab_Photo y ON y.ideleve = b.ideleve 
+                 where b.ideleve = :ideleve 
+                ORDER BY b.ideleve limit 1
+        """;
+
+	    
     	 MapSqlParameterSource parameters = new MapSqlParameterSource().addValue("ideleve", ideleve);
 	  
 	    try {
