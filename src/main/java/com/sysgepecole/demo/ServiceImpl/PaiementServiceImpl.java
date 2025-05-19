@@ -1014,37 +1014,25 @@ public List<PaiementDto> FichePaiementeleves(Long ideleve) {
 }
 
 
-	@Override
+@Override
 public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException {
 	 try {
 	        List<PaiementDto> collections = FichePaiementeleves(ideleve);
-		 
-	       JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-	     Map<String, Object> parameters = new HashMap<>();
-	        parameters.put("NumberToWords", new NumberToWords()); 
-		 
-	        InputStream jrxmlStream = new ClassPathResource("etats/Fichepaiement.jrxml").getInputStream();
-        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
-        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+	        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+	        
+	        Map<String, Object> parameters = new HashMap<>();
+	        parameters.put("REPORT_DATA_SOURCE", ds);
 
-        String encodedString = Base64.getEncoder()
-                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+	        JasperPrint reportlist = JasperFillManager.fillReport(
+	            JasperCompileManager.compileReport(ResourceUtils.getFile("classpath:etats/Fichepaiement.jrxml").getAbsolutePath()), parameters);
 
-        return ResponseEntity.ok(new reportBase64(encodedString));
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
-    } catch (JRException e) {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erreur JasperReports : " + e.getMessage());
-    } catch (Exception e) {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erreur inattendue : " + e.getMessage());
-    }
+	        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+	        return ResponseEntity.ok(new reportBase64(encodedString));
+	    } catch (FileNotFoundException e) {
+	        return ResponseEntity.ok().body(e.getMessage());
+	    } catch (JRException e) {
+	        return ResponseEntity.ok().body(e.getMessage());
+	    }
 }
 
 
