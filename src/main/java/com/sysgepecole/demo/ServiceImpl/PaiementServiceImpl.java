@@ -1015,19 +1015,20 @@ public List<PaiementDto> FichePaiementeleves(Long ideleve) {
 
 
 	@Override
-	public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException {
-    try {
-          List<PaiementDto> collections = FichePaiementeleves(ideleve);
-
-        if (collections.isEmpty()) {
+public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException {
+	 try {
+	        List<PaiementDto> collections = FichePaiementeleves(ideleve);
+		 
+		   if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+                    .body("Aucune fiche
+			  élève trouvée pour l'ID : " + ideleve);
         }
-
-       JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-	  
-
-        InputStream jrxmlStream = new ClassPathResource("etats/Fichepaiement.jrxml").getInputStream();
+	       JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+	     Map<String, Object> parameters = new HashMap<>();
+	        parameters.put("NumberToWords", new NumberToWords()); 
+		 
+	        InputStream jrxmlStream = new ClassPathResource("etats/Fichepaiement.jrxml").getInputStream();
         JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
         JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
 
@@ -1050,6 +1051,8 @@ public List<PaiementDto> FichePaiementeleves(Long ideleve) {
                 .body("Erreur inattendue : " + e.getMessage());
     }
 }
+
+
 
 
 public List<PaiementDto> FicheRecouvrementClasses(long idecole, long idclasse, long idannee) {
