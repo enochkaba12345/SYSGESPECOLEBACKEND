@@ -95,23 +95,22 @@ public List<LogosModelDto> collecteLogos(Long idecole) {
             LEFT JOIN tab_Logos y ON y.idecole = a.idecole
         """;
 
-    MapSqlParameterSource parameters = new MapSqlParameterSource();
+   MapSqlParameterSource parameters = new MapSqlParameterSource();
 
-    if (idecole != null && idecole > 0) {
-        query.append("WHERE a.idecole = :idecole ");
-        parameters.addValue("idecole", idecole);
-    }
+if (idecole != null && idecole > 0) {
+    baseQuery += " WHERE a.idecole = :idecole";
+    parameters.addValue("idecole", idecole);
+}
 
-    try {
-        return namedParameterJdbcTemplate.query(
-            query.toString(),
-            parameters,
-            new BeanPropertyRowMapper<>(LogosModelDto.class)
-        );
-    } catch (Exception e) {
-        e.printStackTrace();
-        return Collections.emptyList();
-    }
+try {
+    return namedParameterJdbcTemplate.query(
+        baseQuery,
+        parameters,
+        new BeanPropertyRowMapper<>(LogosModelDto.class)
+    );
+} catch (Exception e) {
+    e.printStackTrace();
+    return Collections.emptyList();
 }
 
 }
