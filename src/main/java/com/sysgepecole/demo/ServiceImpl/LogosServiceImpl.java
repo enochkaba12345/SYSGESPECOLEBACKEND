@@ -81,10 +81,10 @@ public class LogosServiceImpl implements LogosService {
     }
 
 	
-   @Override
+  @Override
 public List<LogosModelDto> collecteLogos(Long idecole) {
 
- String query = """
+   String baseQuery = """
             SELECT a.idecole, UPPER(a.ecole) AS ecole, y.id, h.idcommune, 
                    UPPER(h.commune) AS commune, UPPER(a.avenue) AS avenue, 
                    UPPER(p.province) AS province, 
@@ -95,7 +95,7 @@ public List<LogosModelDto> collecteLogos(Long idecole) {
             LEFT JOIN tab_Logos y ON y.idecole = a.idecole
         """;
 
-   MapSqlParameterSource parameters = new MapSqlParameterSource();
+MapSqlParameterSource parameters = new MapSqlParameterSource();
 
 if (idecole != null && idecole > 0) {
     baseQuery += " WHERE a.idecole = :idecole";
@@ -112,5 +112,6 @@ try {
     e.printStackTrace();
     return Collections.emptyList();
 }
+
 
 }
