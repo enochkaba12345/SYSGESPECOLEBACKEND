@@ -80,25 +80,29 @@ public class LogosServiceImpl implements LogosService {
         return (String) uploadResult.get("secure_url");
     }
 
+	
     @Override
     public List<LogosModelDto> collecteLogos(Long idecole) {
-        String basePath = "https://res.cloudinary.com/dx7zvvxtw/image/upload/";
-
+       
+	String basePath = "https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747319356/logosecole/";
         StringBuilder query = new StringBuilder();
         query.append("SELECT ")
-             .append("a.idecole, ")
-             .append("UPPER(a.ecole) AS ecole, ")
-             .append("y.id, ")
-             .append("h.idcommune, ")
-             .append("UPPER(h.commune) AS commune, ")
-             .append("UPPER(a.avenue) AS avenue, ")
-             .append("UPPER(p.province) AS province, ")
-             .append("CONCAT('").append(basePath).append("', ")
-             .append("COALESCE(NULLIF(y.logos, ''), 'logosecole/logo.jpg')) AS logos ")
-             .append("FROM tab_Ecole a ")
-             .append("JOIN tab_Commune h ON h.idcommune = a.idcommune ")
-             .append("JOIN tab_Province p ON p.idprovince = a.idprovince ")
-             .append("LEFT JOIN tab_Logos y ON y.idecole = a.idecole ");
+   .append("a.idecole, ")
+   .append("UPPER(a.ecole) AS ecole, ")
+   .append("y.id AS idlogo, ")
+   .append("h.idcommune, ")
+   .append("UPPER(h.commune) AS commune, ")
+   .append("UPPER(a.avenue) AS avenue, ")
+   .append("UPPER(p.province) AS province, ")
+   .append("CASE ")
+   .append("  WHEN y.logos IS NULL OR y.logos = '' THEN CONCAT(:basePath, 'logosecole/logo.jpg') ")
+   .append("  WHEN LEFT(y.logos, 8) = 'https://' THEN y.logos ")
+   .append("  ELSE CONCAT(:basePath, y.logos) ")
+   .append("END AS logos ")
+   .append("FROM tab_Ecole a ")
+   .append("JOIN tab_Commune h ON h.idcommune = a.idcommune ")
+   .append("JOIN tab_Province p ON p.idprovince = a.idprovince ")
+   .append("LEFT JOIN tab_Logos y ON y.idecole = a.idecole ");
 
         MapSqlParameterSource parameters = new MapSqlParameterSource();
 
