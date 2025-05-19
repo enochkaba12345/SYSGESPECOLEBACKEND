@@ -90,8 +90,8 @@ public class PhotoServiceImpl implements PhotoService{
 
 
 
-	  public String uploadLogos(MultipartFile photo) throws IOException {
-        Map uploadResult = cloudinary.uploader().upload(logos.getBytes(), ObjectUtils.asMap(
+	  public String uploadPhoto(MultipartFile photo) throws IOException {
+        Map uploadResult = cloudinary.uploader().upload(photo.getBytes(), ObjectUtils.asMap(
             "folder", "photoeleve"
         ));
         return (String) uploadResult.get("secure_url");
