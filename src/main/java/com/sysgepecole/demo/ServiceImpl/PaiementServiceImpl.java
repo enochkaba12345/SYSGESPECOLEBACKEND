@@ -1019,11 +1019,6 @@ public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundExc
 	 try {
 	        List<PaiementDto> collections = FichePaiementeleves(ideleve);
 		 
-		   if (collections.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche
-			  élève trouvée pour l'ID : " + ideleve);
-        }
 	       JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
 	     Map<String, Object> parameters = new HashMap<>();
 	        parameters.put("NumberToWords", new NumberToWords()); 
