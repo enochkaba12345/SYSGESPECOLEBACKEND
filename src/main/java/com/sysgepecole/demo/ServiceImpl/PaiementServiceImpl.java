@@ -1017,7 +1017,7 @@ public List<PaiementDto> FichePaiementeleves(long ideleve) {
 
 
 	@Override
-public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException {
+	public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException {
     try {
           List<PaiementDto> collections = FichePaiementeleves(ideleve);
 
