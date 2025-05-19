@@ -986,7 +986,7 @@ public ResponseEntity<?> EcoleParClasse(Long idecole,Long idclasse,Long idannee)
 	
 }
 
-public List<PaiementDto> FichePaiementeleves(long ideleve) {
+public List<PaiementDto> FichePaiementeleves(Long ideleve) {
 	 String query = " SELECT DISTINCT ON (n.idpaiement) "+
     " UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe , UPPER(b.adresse) AS adresse, b.ideleve, "+ 
     " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "+ 
