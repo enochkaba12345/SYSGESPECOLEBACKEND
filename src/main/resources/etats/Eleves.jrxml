@@ -91,7 +91,7 @@
 			</textField>
 			<image hAlign="Center" vAlign="Middle">
 				<reportElement x="10" y="32" width="90" height="77" uuid="dfc81179-28fc-443b-83b1-ab4fbbf005e7"/>
-                                <imageExpression><![CDATA[new java.net.URL($F{logos})]]></imageExpression>
+				<imageExpression><![CDATA[new java.net.URL($F{logos})]]></imageExpression>
 			</image>
 		</band>
 	</title>
