@@ -512,7 +512,7 @@ public class PaiementServiceImpl implements PaiementService{
 
         if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+                    .body("Aucune fiche élève trouvée pour l'ID : " + idpaiement);
         }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
@@ -601,7 +601,7 @@ public class PaiementServiceImpl implements PaiementService{
 
         if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+                    .body("Aucune fiche élève trouvée pour l'ID : " + idpaiement);
         }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
@@ -667,7 +667,7 @@ public class PaiementServiceImpl implements PaiementService{
 
         if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+                    .body("Aucune fiche élève trouvée pour l'ID : " + idpaiement);
         }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
@@ -737,7 +737,7 @@ public class PaiementServiceImpl implements PaiementService{
 
         if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+                    .body("Aucune fiche élève trouvée pour l'ID : " + idpaiement);
         }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
