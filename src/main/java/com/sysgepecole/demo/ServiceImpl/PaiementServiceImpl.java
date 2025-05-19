@@ -920,8 +920,8 @@ public List<PaiementDto> FichePaiementeleves(long ideleve) {
     " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "+ 
     " c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "+ 
     " UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants, n.datepaie, UPPER(n.frais) AS frais, "+ 
-    " UPPER(v.province) AS province, v.idprovince, UPPER(m.commune) AS commune, m.idcommune,x.id, "+
-   + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
+    " UPPER(v.province) AS province, v.idprovince, UPPER(m.commune) AS commune, m.idcommune,x.id, " +
+   " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
     " FROM tab_Eleve b "+
     " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "+
     " JOIN tab_Classe e ON c.idclasse = e.idclasse "+
