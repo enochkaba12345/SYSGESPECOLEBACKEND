@@ -105,13 +105,12 @@ public class EleveServiceImpl implements EleveService{
 	
 
 	  public List<EleveModelDto> CollecteEleves() {
-		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	        String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,"
 	                + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,"
 	                + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,"
 	                + "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province,"
 	                + "h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee,UPPER(a.avenue) AS avenue,"
-	                + "CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos "
+			+ " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
 	                + " FROM tab_Eleve b"
 	                + " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse"
 	                + " JOIN tab_Classe e ON c.idclasse = e.idclasse"
@@ -176,14 +175,13 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
     
     public List<EleveModelDto> FicheEleves(Long ideleve) {
   
-	    	String basePath = "https://sysgespecolebackend.onrender.com/log/";
     	String query = "SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,"
     			+ "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,"
     			+ "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,"
     			+ "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, x.id,y.id, "
     			+ "h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee,UPPER(a.avenue) AS avenue,UPPER(z.username) AS username, "
-    			+ "CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos, "
-    			+ "CONCAT('" + basePath + "', CASE WHEN y.photo IS NOT NULL AND y.photo != '' THEN UPPER(y.photo) ELSE 'icon.jpg' END) AS photo "
+    			+ " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, "
+    			+ " COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
     			+ " FROM tab_Eleve b"
     			+ "	JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse"
     			+ "	JOIN tab_Classe e ON c.idclasse = e.idclasse"
@@ -243,13 +241,12 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	
 	
 	public List<EleveModelDto> searchEleves(String nom, Long idecole, boolean isAdmin) {
-	  String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	                 + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	                 + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
 	                 + "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, f.idannee, "
 	                 + "UPPER(f.annee) AS annee, UPPER(a.avenue) AS avenue, x.id, "
-	                 + "CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo "
+	                + " COALESCE(NULLIF(x.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
 	                 + "FROM tab_Eleve b "
 	                 + "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + "JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -292,14 +289,14 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 
 	
 	public List<EleveModelDto> CollecteAnneeEleves(long idintermedaireclasse, long idintermedaireannee) {
-	   String basePath = "https://sysgespecolebackend.onrender.com/log/";
+	  
 
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	            + " UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	            + " b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
 	            + " c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, f.idannee, "
 	            + " UPPER(f.annee) AS annee, UPPER(a.avenue) AS avenue, x.id, "
-	            + " CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo "
+	            + " COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
 	            + " FROM tab_Eleve b "
 	            + " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	            + " JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -366,14 +363,14 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	}
 
 	public List<EleveModelDto> EleveParClasses(long idecole, long idclasse, long idannee) {
-	    String basePath = "https://sysgespecolebackend.onrender.com/log/";
+	  
 
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	            + " UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	            + " b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
 	            + " c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, f.idannee, "
 	            + " UPPER(f.annee) AS annee, UPPER(a.avenue) AS avenue, x.id, "
-	            + " CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo "
+	            + " COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
 	            + " FROM tab_Eleve b "
 	            + " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	            + " JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -410,12 +407,11 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	}
 
 	public List<EleveModelDto> ElevePars(long idecole, long idclasse, long idannee, long ideleve) {
-		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = " SELECT  b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
 	                 + " UPPER(b.sexe) AS sexe, UPPER(b.adresse) AS adresse, b.telephone,"
 	                 + " a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, "
 	                 + " c.idintermedaireclasse, d.idintermedaireannee, f.idannee, UPPER(f.annee) AS annee, x.id, "
-	         	     + " CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo "  
+	         	 + " COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo "  
 	                 + " FROM tab_Eleve b "
 	                 + " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + " JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -454,13 +450,12 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 
 
 	public List<EleveModelDto> FicheClasses(long idecole, long idclasse) {
-		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT b.ideleve, UPPER(b.nom) || ' ' || UPPER(b.postnom) || ' ' || UPPER(b.prenom) AS noms, "
 	                 + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	                 + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
 	                 + "c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province,y.id, "
 	                 + "h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee, UPPER(a.avenue) AS avenue, UPPER(z.username) AS username, "
-	                 + "CONCAT('" + basePath + "', CASE WHEN y.logos IS NOT NULL AND y.logos != '' THEN UPPER(y.logos) ELSE 'logo.jpg' END) AS logos "
+	                 + " COALESCE(NULLIF(y.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, "
 	                 + "FROM tab_Eleve b "
 	                 + "LEFT JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + "LEFT JOIN tab_Classe e ON c.idclasse = e.idclasse "
