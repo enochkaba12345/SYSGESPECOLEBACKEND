@@ -208,43 +208,42 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
     }
 	
 	
-    public ResponseEntity<?> FicheEleve(Long ideleve) throws FileNotFoundException, JRException {
-	   try {
-    if (collections.isEmpty()) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+   public ResponseEntity<?> FicheEleve(Long ideleve) throws FileNotFoundException, JRException {
+    try {
+        List<EleveModelDto> collections = FicheEleves(ideleve); // Déclaration ici
+
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+        JasperPrint reportlist = JasperFillManager.fillReport(
+            JasperCompileManager.compileReport(
+                ResourceUtils.getFile("classpath:etats/Eleves.jrxml").getAbsolutePath()
+            ), new HashMap<>(), ds
+        );
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
     }
-
-    JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-    JasperPrint reportlist = JasperFillManager.fillReport(
-        JasperCompileManager.compileReport(
-            ResourceUtils.getFile("classpath:etats/Eleves.jrxml").getAbsolutePath()
-        ), new HashMap<>(), ds // Ajout de `new HashMap<>()`
-    );
-
-    String encodedString = Base64.getEncoder()
-            .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-
-    return ResponseEntity.ok(new reportBase64(encodedString));
-
-} catch (FileNotFoundException e) {
-    e.printStackTrace(); // Ajout pour voir l'erreur complète
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body("Fichier JRXML introuvable : " + e.getMessage());
-} catch (JRException e) {
-    e.printStackTrace();
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body("Erreur JasperReports : " + e.getMessage());
-} catch (Exception e) {
-    e.printStackTrace();
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body("Erreur inattendue : " + e.getMessage());
 }
 
-    }
-
-	
-	
 	
 	public List<EleveModelDto> searchEleves(String nom, Long idecole, boolean isAdmin) {
 	    String query = "SELECT DISTINCT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, "
