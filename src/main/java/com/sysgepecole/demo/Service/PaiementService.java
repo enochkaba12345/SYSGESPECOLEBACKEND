@@ -28,7 +28,7 @@ public interface PaiementService {
 	 ResponseEntity<?> ImpressionRecuModeEleveSolde(long idpaiement) throws FileNotFoundException, JRException;
 	 ResponseEntity<?> ImpressionRecuModeEleve(long idpaiement) throws FileNotFoundException, JRException;
 	 ResponseEntity<?> EcoleParClasse(Long idecole,Long idclasse,Long idannee) ;
-	 ResponseEntity<?> FichePaiementeleve(Long ideleve ) throws FileNotFoundException, JRException;
+	 ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException;
 	 List<PaiementDto> searchPaiements(String nom, Long idecole, boolean isAdmin);
 	 ResponseEntity<?> PaiementDeleve(Long ideleve);
 	 ResponseEntity<Paiement> updatePaiement(Long idpaiement, Paiement paiement);
