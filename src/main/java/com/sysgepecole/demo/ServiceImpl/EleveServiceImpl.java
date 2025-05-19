@@ -178,7 +178,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
           SELECT b.ideleve, UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom,
     			UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email,
     			b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe,UPPER(b.adresse) AS adresse,
-    			c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, x.id,y.id, "
+    			c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, x.id,y.id, 
     			h.idcommune, UPPER(h.commune) AS commune, f.idannee, UPPER(f.annee) AS annee,UPPER(a.avenue) AS avenue,UPPER(z.username) AS username, 
     			 COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, 
     			 COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo 
