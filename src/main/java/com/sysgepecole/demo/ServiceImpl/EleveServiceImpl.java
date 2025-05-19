@@ -370,7 +370,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	            + " b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
 	            + " c.idintermedaireclasse, d.idintermedaireannee, g.idprovince, UPPER(g.province) AS province, f.idannee, "
 	            + " UPPER(f.annee) AS annee, UPPER(a.avenue) AS avenue, x.id, "
-	            + " COALESCE(NULLIF(y.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
+	            + " COALESCE(NULLIF(x.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " 
 	            + " FROM tab_Eleve b "
 	            + " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	            + " JOIN tab_Classe e ON c.idclasse = e.idclasse "
