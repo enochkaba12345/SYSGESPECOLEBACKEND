@@ -209,7 +209,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	
 	
     public ResponseEntity<?> FicheEleve(Long ideleve) throws FileNotFoundException, JRException {
-	    try {
+	   try {
     if (collections.isEmpty()) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
@@ -219,7 +219,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
     JasperPrint reportlist = JasperFillManager.fillReport(
         JasperCompileManager.compileReport(
             ResourceUtils.getFile("classpath:etats/Eleves.jrxml").getAbsolutePath()
-        ), new HashMap<>(), ds
+        ), new HashMap<>(), ds // Ajout de `new HashMap<>()`
     );
 
     String encodedString = Base64.getEncoder()
@@ -228,7 +228,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
     return ResponseEntity.ok(new reportBase64(encodedString));
 
 } catch (FileNotFoundException e) {
-    e.printStackTrace();
+    e.printStackTrace(); // Ajout pour voir l'erreur complète
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body("Fichier JRXML introuvable : " + e.getMessage());
 } catch (JRException e) {
