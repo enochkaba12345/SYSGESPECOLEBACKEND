@@ -1099,10 +1099,7 @@ public ResponseEntity<?> FicheRecouvrementClasse(long idecole, long idclasse, lo
     try {
            List<PaiementDto> collections = FicheRecouvrementClasses(idecole,idclasse,idannee);
 
-        if (collections.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
-        }
+        
 
        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
 
