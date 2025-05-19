@@ -1006,9 +1006,9 @@ public List<PaiementDto> FichePaiementeleves(Long ideleve) {
     " JOIN tab_Province v ON v.idprovince = b.idprovince "+
     " JOIN tab_Commune m ON m.idcommune = a.idcommune "+
     " JOIN tab_Paiement n ON n.ideleve = b.ideleve  "+
-    "LEFT JOIN tab_Logos x ON x.idecole = a.idecole " +
-    " WHERE b.ideleve = :ideleve "+ 
-    " ORDER BY n.idpaiement DESC";
+    " LEFT JOIN tab_Logos x ON x.idecole = a.idecole " +
+    " WHERE b.ideleve = :ideleve " + 
+    " ORDER BY n.idpaiement DESC ";
     MapSqlParameterSource parameters = new MapSqlParameterSource().addValue("ideleve", ideleve);
     return namedParameterJdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<>(PaiementDto.class));
 }
