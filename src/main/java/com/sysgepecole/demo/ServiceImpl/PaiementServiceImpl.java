@@ -30,6 +30,9 @@ import com.sysgepecole.demo.Repository.FraisRepository;
 import com.sysgepecole.demo.Repository.PaiementRepository;
 import com.sysgepecole.demo.Service.PaiementService;
 
+import org.springframework.core.io.ClassPathResource;
+import java.io.InputStream;
+import net.sf.jasperreports.engine.JasperReport;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -413,31 +416,43 @@ public class PaiementServiceImpl implements PaiementService{
 	
 	}
 
-		public ResponseEntity<?> ImpressionRecuEleveAcompte(long ideleve) {
-		    try {
-		    	
-		        List<PaiementDto> collections = ImpressionRecuEleveAcomptes(ideleve);
-		        System.out.println(collections);
-		        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+	public ResponseEntity<?> ImpressionRecuEleveAcompte(long ideleve) {
+    try {
+         List<PaiementDto> collections = ImpressionRecuEleveAcomptes(ideleve);
 
-		        Map<String, Object> parameters = new HashMap<>();
-		        parameters.put("NumberToWords", new NumberToWords()); 
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
 
-		        JasperPrint reportlist = JasperFillManager.fillReport(
-		            JasperCompileManager.compileReport(
-		                ResourceUtils.getFile("classpath:etats/Recu.jrxml").getAbsolutePath()
-		            ), 
-		            parameters, ds
-		        );
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
 
-		        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-		        return ResponseEntity.ok(new reportBase64(encodedString));
-		    } catch (FileNotFoundException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    } catch (JRException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    }
-		}
+	     Map<String, Object> parameters = new HashMap<>();
+	        parameters.put("NumberToWords", new NumberToWords()); 
+        InputStream jrxmlStream = new ClassPathResource("etats/Recu.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
+}
+		
 	
 	public List<PaiementDto> ImpressionRecuEleveSoldes(long ideleve) {
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, " 
@@ -489,31 +504,44 @@ public class PaiementServiceImpl implements PaiementService{
 	    return namedParameterJdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<>(PaiementDto.class));
 	}
 
-	
-		public ResponseEntity<?> ImpressionRecuEleveSolde(long idpaiement) {
-		    try {
-		        List<PaiementDto> collections = ImpressionRecuEleveSoldes(idpaiement);
-		        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
 
-		      
-		        Map<String, Object> parameters = new HashMap<>();
-		        parameters.put("NumberToWords", new NumberToWords()); 
+	public ResponseEntity<?> ImpressionRecuEleveSolde(long idpaiement) {
+    try {
+         List<PaiementDto> collections =  ImpressionRecuEleveSoldes(idpaiement);
 
-		        JasperPrint reportlist = JasperFillManager.fillReport(
-		            JasperCompileManager.compileReport(
-		                ResourceUtils.getFile("classpath:etats/Recu.jrxml").getAbsolutePath()
-		            ), 
-		            parameters, ds
-		        );
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
 
-		        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-		        return ResponseEntity.ok(new reportBase64(encodedString));
-		    } catch (FileNotFoundException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    } catch (JRException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    }
-		}
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+
+	     Map<String, Object> parameters = new HashMap<>();
+	        parameters.put("NumberToWords", new NumberToWords()); 
+        InputStream jrxmlStream = new ClassPathResource("etats/Recu.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
+}
+		
 	
 	public List<PaiementDto> ImpressionRecuModeEleveSoldes(long idpaiement) {
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
@@ -567,29 +595,42 @@ public class PaiementServiceImpl implements PaiementService{
 
 
 		public ResponseEntity<?> ImpressionRecuModeEleveSolde(long idpaiement) {
-		    try {
-		        List<PaiementDto> collections = ImpressionRecuModeEleveSoldes(idpaiement);
-		        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+    try {
+         List<PaiementDto> collections = ImpressionRecuModeEleveSoldes(idpaiement);
 
-		        Map<String, Object> parameters = new HashMap<>();
-		        parameters.put("NumberToWords", new NumberToWords()); 
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
 
-		        JasperPrint reportlist = JasperFillManager.fillReport(
-		            JasperCompileManager.compileReport(
-		                ResourceUtils.getFile("classpath:etats/Recu.jrxml").getAbsolutePath()
-		            ), 
-		            parameters, ds
-		        );
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
 
-		        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-		        return ResponseEntity.ok(new reportBase64(encodedString));
-		    } catch (FileNotFoundException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    } catch (JRException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    }
-		}
-	
+	     Map<String, Object> parameters = new HashMap<>();
+	        parameters.put("NumberToWords", new NumberToWords()); 
+        InputStream jrxmlStream = new ClassPathResource("etats/Recu.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
+}
+		
 	public List<PaiementDto> ImpressionRecuModeEleveAcomptes(long idpaiement) {
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
@@ -618,29 +659,44 @@ public class PaiementServiceImpl implements PaiementService{
 	    return namedParameterJdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<>(PaiementDto.class));
 	}
 
+	
 		public ResponseEntity<?> ImpressionRecuModeEleveAcompte(long idpaiement) {
-		    try {
-		        List<PaiementDto> collections = ImpressionRecuModeEleveAcomptes(idpaiement);
-		        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+    try {
+         List<PaiementDto> collections =  ImpressionRecuModeEleveAcomptes(idpaiement);
 
-		        Map<String, Object> parameters = new HashMap<>();
-		        parameters.put("NumberToWords", new NumberToWords()); 
-		        
-		        JasperPrint reportlist = JasperFillManager.fillReport(
-		            JasperCompileManager.compileReport(
-		                ResourceUtils.getFile("classpath:etats/Recu.jrxml").getAbsolutePath()
-		            ), 
-		            parameters, ds
-		        );
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
 
-		        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-		        return ResponseEntity.ok(new reportBase64(encodedString));
-		    } catch (FileNotFoundException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    } catch (JRException e) {
-		        return ResponseEntity.ok().body(e.getMessage());
-		    }
-		}
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+
+	     Map<String, Object> parameters = new HashMap<>();
+	        parameters.put("NumberToWords", new NumberToWords()); 
+        InputStream jrxmlStream = new ClassPathResource("etats/Recu.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
+}
+		
 
 	
 	public List<PaiementDto> ImpressionRecuModeEleves(long idpaiement) {
@@ -675,28 +731,42 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public ResponseEntity<?> ImpressionRecuModeEleve(long idpaiement) {
-	    try {
-	        List<PaiementDto> collections = ImpressionRecuModeEleves(idpaiement);
-	        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+    try {
+        List<PaiementDto> collections = ImpressionRecuModeEleves(idpaiement);
 
-	        Map<String, Object> parameters = new HashMap<>();
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+	     Map<String, Object> parameters = new HashMap<>();
 	        parameters.put("NumberToWords", new NumberToWords()); 
 
-	        JasperPrint reportlist = JasperFillManager.fillReport(
-	            JasperCompileManager.compileReport(
-	                ResourceUtils.getFile("classpath:etats/Recu.jrxml").getAbsolutePath()
-	            ), 
-	            parameters, ds 
-	        );
+        InputStream jrxmlStream = new ClassPathResource("etats/Recu.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
 
-	        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-	        return ResponseEntity.ok(new reportBase64(encodedString));
-	    } catch (FileNotFoundException e) {
-	        return ResponseEntity.ok().body(e.getMessage());
-	    } catch (JRException e) {
-	        return ResponseEntity.ok().body(e.getMessage());
-	    }
-	}
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
+}
+	
 
 
 	public List<PaiementDto> searchPaiements(String nom, Long idecole, boolean isAdmin) {
@@ -944,25 +1014,42 @@ public List<PaiementDto> FichePaiementeleves(long ideleve) {
     return namedParameterJdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<>(PaiementDto.class));
 }
 
-@Override
+
+	@Override
 public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundException, JRException {
-	 try {
-	        List<PaiementDto> collections = FichePaiementeleves(ideleve);
-	        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-	        
-	        Map<String, Object> parameters = new HashMap<>();
-	        parameters.put("REPORT_DATA_SOURCE", ds);
+    try {
+          List<PaiementDto> collections = FichePaiementeleves(ideleve);
 
-	        JasperPrint reportlist = JasperFillManager.fillReport(
-	            JasperCompileManager.compileReport(ResourceUtils.getFile("classpath:etats/Fichepaiement.jrxml").getAbsolutePath()), parameters);
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
 
-	        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-	        return ResponseEntity.ok(new reportBase64(encodedString));
-	    } catch (FileNotFoundException e) {
-	        return ResponseEntity.ok().body(e.getMessage());
-	    } catch (JRException e) {
-	        return ResponseEntity.ok().body(e.getMessage());
-	    }
+       JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+	  
+
+        InputStream jrxmlStream = new ClassPathResource("etats/Fichepaiement.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
 }
 
 
@@ -1022,26 +1109,42 @@ public List<PaiementDto> FicheRecouvrementClasses(long idecole, long idclasse, l
 }
 
 
-@Override
+	@Override
 public ResponseEntity<?> FicheRecouvrementClasse(long idecole, long idclasse, long idannee) throws FileNotFoundException, JRException {
-	 try {
-	        List<PaiementDto> collections = FicheRecouvrementClasses(idecole,idclasse,idannee);
-	        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-	        
-	        Map<String, Object> parameters = new HashMap<>();
-	        parameters.put("REPORT_DATA_SOURCE", ds);
+    try {
+           List<PaiementDto> collections = FicheRecouvrementClasses(idecole,idclasse,idannee);
 
-	        JasperPrint reportlist = JasperFillManager.fillReport(
-	            JasperCompileManager.compileReport(ResourceUtils.getFile("classpath:etats/FicheRecouvrement.jrxml").getAbsolutePath()), parameters);
+        if (collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Aucune fiche élève trouvée pour l'ID : " + ideleve);
+        }
 
-	        String encodedString = Base64.getEncoder().encodeToString(JasperExportManager.exportReportToPdf(reportlist));
-	        return ResponseEntity.ok(new reportBase64(encodedString));
-	    } catch (FileNotFoundException e) {
-	        return ResponseEntity.ok().body(e.getMessage());
-	    } catch (JRException e) {
-	        return ResponseEntity.ok().body(e.getMessage());
-	    }
+       JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
+
+        InputStream jrxmlStream = new ClassPathResource("etats/FicheRecouvrement.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
+
+        String encodedString = Base64.getEncoder()
+                .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
+
+        return ResponseEntity.ok(new reportBase64(encodedString));
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
+    } catch (JRException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur JasperReports : " + e.getMessage());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Erreur inattendue : " + e.getMessage());
+    }
 }
+	
 
 public List<PaiementDto> CollectionPaiementse(long idecole) {
 	 String query = "SELECT UPPER(cl.classe) AS classe, UPPER(an.annee) AS annee, SUM(p.montants) AS montants "
