@@ -644,29 +644,32 @@ public class PaiementServiceImpl implements PaiementService{
 
 	
 	public List<PaiementDto> ImpressionRecuModeEleves(long idpaiement) {
-	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
-	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
-	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
-	                 + "UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants,n.datepaie, UPPER(n.frais) as frais, "
-	                 + "m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser,x.id, "
-	                 + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
-	                 + "FROM tab_Eleve b "
-	                 + "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
-	                 + "JOIN tab_Classe e ON c.idclasse = e.idclasse "
-	                 + "JOIN tab_Ecole a ON c.idecole = a.idecole "
-	                 + "JOIN tab_Intermedaireannee d1 ON b.idintermedaireannee = d1.idintermedaireannee "
-	                 + "JOIN tab_Annee f ON d1.idannee = f.idannee "
-	                 + "JOIN tab_Frais d2 ON b.idintermedaireannee = d2.idintermedaireannee AND d2.idintermedaireclasse = c.idintermedaireclasse "
-	                 + "JOIN tab_Categoriefrais k ON k.idcategorie = d2.idcategorie "
-	                 + "JOIN tab_Tranche l ON l.idtranche = d2.idtranche "
-	                 + "JOIN tab_Province m ON m.idprovince = b.idprovince "
-	                 + "JOIN tab_Commune h ON h.idcommune = a.idcommune "
-	                 + "JOIN tab_Paiement n ON n.ideleve = b.ideleve  "
-	                 + "JOIN tab_User z ON z.iduser = n.iduser "
-	                 + " LEFT JOIN tab_Logos x ON x.idecole = a.idecole " 
-	                 + "WHERE n.idpaiement = :idpaiement "
-	                 + "GROUP BY b.ideleve, a.idecole, e.idclasse,x.id, h.idcommune, m.idprovince,z.iduser, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, l.idtranche, n.idpaiement, d2.idfrais "
-	                 + "ORDER BY n.idpaiement LIMIT 1";
+		
+   String query = """
+           SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, 
+	                 a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, 
+	                 c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, 
+	                 UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants,n.datepaie, UPPER(n.frais) as frais, 
+	                 m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser,x.id, 
+	                  COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos 
+	                 FROM tab_Eleve b 
+	                 JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse 
+	                 JOIN tab_Classe e ON c.idclasse = e.idclasse 
+	                 JOIN tab_Ecole a ON c.idecole = a.idecole 
+	                 JOIN tab_Intermedaireannee d1 ON b.idintermedaireannee = d1.idintermedaireannee 
+	                 JOIN tab_Annee f ON d1.idannee = f.idannee 
+	                 JOIN tab_Frais d2 ON b.idintermedaireannee = d2.idintermedaireannee AND d2.idintermedaireclasse = c.idintermedaireclasse 
+	                 JOIN tab_Categoriefrais k ON k.idcategorie = d2.idcategorie 
+	                 JOIN tab_Tranche l ON l.idtranche = d2.idtranche 
+	                 JOIN tab_Province m ON m.idprovince = b.idprovince 
+	                 JOIN tab_Commune h ON h.idcommune = a.idcommune 
+	                 JOIN tab_Paiement n ON n.ideleve = b.ideleve  
+	                 JOIN tab_User z ON z.iduser = n.iduser 
+	                 LEFT JOIN tab_Logos x ON x.idecole = a.idecole 
+	                 WHERE n.idpaiement = :idpaiement 
+	                 GROUP BY b.ideleve, a.idecole, e.idclasse,x.id, h.idcommune, m.idprovince,z.iduser, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, l.idtranche, n.idpaiement, d2.idfrais "
+	                 ORDER BY n.idpaiement LIMIT 1
+        """;
 	    MapSqlParameterSource parameters = new MapSqlParameterSource().addValue("idpaiement", idpaiement);
 	    return namedParameterJdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<>(PaiementDto.class));
 	}
