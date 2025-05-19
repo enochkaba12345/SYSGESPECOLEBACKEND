@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import java.io.InputStream;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -208,9 +210,9 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
     }
 	
 	
-   public ResponseEntity<?> FicheEleve(Long ideleve) throws FileNotFoundException, JRException {
+  public ResponseEntity<?> FicheEleve(Long ideleve) throws JRException {
     try {
-        List<EleveModelDto> collections = FicheEleves(ideleve); // Déclaration ici
+        List<EleveModelDto> collections = FicheEleves(ideleve);
 
         if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -218,21 +220,20 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
         }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-        JasperPrint reportlist = JasperFillManager.fillReport(
-            JasperCompileManager.compileReport(
-                ResourceUtils.getFile("classpath:etats/Eleves.jrxml").getAbsolutePath()
-            ), new HashMap<>(), ds
-        );
+
+        InputStream jrxmlStream = new ClassPathResource("etats/Eleves.jrxml").getInputStream();
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+        JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
 
         String encodedString = Base64.getEncoder()
                 .encodeToString(JasperExportManager.exportReportToPdf(reportlist));
 
         return ResponseEntity.ok(new reportBase64(encodedString));
 
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
         e.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Fichier JRXML introuvable : " + e.getMessage());
+                .body("Fichier JRXML introuvable ou inaccessible : " + e.getMessage());
     } catch (JRException e) {
         e.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
