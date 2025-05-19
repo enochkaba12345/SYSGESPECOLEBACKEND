@@ -380,13 +380,12 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public List<PaiementDto> ImpressionRecuEleveAcomptes(long ideleve) {
-		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
 	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
 	                 + "UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants,n.datepaie, UPPER(n.frais) as frais, "
 	                 + "m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser, "
-	                 + " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN x.logos ELSE 'logo.jpg' END) AS logos,x.id "
+		         + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos,x.id "
 	                 + "FROM tab_Eleve b "
 	                 + "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + "JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -441,13 +440,12 @@ public class PaiementServiceImpl implements PaiementService{
 		}
 	
 	public List<PaiementDto> ImpressionRecuEleveSoldes(long ideleve) {
-		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, " 
 	    		+ " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, "
 	    		+ " n.idpaiement, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, UPPER(n.categorie) AS categorie, "
 	    		+ " UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.datepaie, UPPER(n.frais) AS frais, "
 	    		+ " m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser, "
-	    		+ " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos,x.id, " 
+	    	        + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos,x.id "
 	    		+ " (SELECT SUM(d2_sub.montant) "
 	    		+ " FROM tab_Frais d2_sub " 
 	    		+ " WHERE d2_sub.idintermedaireclasse = c.idintermedaireclasse AND d2_sub.idintermedaireannee = d1.idintermedaireannee) AS montant_frais, "
@@ -518,13 +516,12 @@ public class PaiementServiceImpl implements PaiementService{
 		}
 	
 	public List<PaiementDto> ImpressionRecuModeEleveSoldes(long idpaiement) {
-		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	    		+ "	a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, "
 	    		+ "	n.idpaiement, c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, UPPER(n.categorie) AS categorie, "
 	    		+ "	UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.datepaie, UPPER(n.frais) AS frais, "
 	    		+ "	m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser, "
-	    		+ " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos,x.id, " 
+	    		+ " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos,x.id "
 	    		+ "	(SELECT SUM(d2_sub.montant) "
 	    		+ "	FROM tab_Frais d2_sub "
 	    		+ "	WHERE d2_sub.idintermedaireclasse = c.idintermedaireclasse AND d2_sub.idintermedaireannee = d1.idintermedaireannee) AS montant_frais, "
@@ -594,13 +591,12 @@ public class PaiementServiceImpl implements PaiementService{
 		}
 	
 	public List<PaiementDto> ImpressionRecuModeEleveAcomptes(long idpaiement) {
-		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
 	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
 	                 + "UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants,n.datepaie, UPPER(n.frais) as frais, "
 	                 + "m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser,x.id, "
-	                 + " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos " 
+	                  + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
 	                 + "FROM tab_Eleve b "
 	                 + "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + "JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -648,13 +644,12 @@ public class PaiementServiceImpl implements PaiementService{
 
 	
 	public List<PaiementDto> ImpressionRecuModeEleves(long idpaiement) {
-		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
 	                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
 	                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
 	                 + "UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants,n.datepaie, UPPER(n.frais) as frais, "
 	                 + "m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser,x.id, "
-	                 + " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos " 
+	                 + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
 	                 + "FROM tab_Eleve b "
 	                 + "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
 	                 + "JOIN tab_Classe e ON c.idclasse = e.idclasse "
@@ -702,13 +697,12 @@ public class PaiementServiceImpl implements PaiementService{
 
 
 	public List<PaiementDto> searchPaiements(String nom, Long idecole, boolean isAdmin) {
-	   String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    StringBuilder query = new StringBuilder(
 	        "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe, " +
 	        "b.ideleve, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, SUM(n.montants) AS montants, " +
 	        "MAX(n.datepaie) AS datepaie, f.idannee, x.id, " +
-	        "CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo, " +
+		" COALESCE(NULLIF(x.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo, " +
 	        "UPPER(f.annee) AS annee, " +
 	        "(SELECT UPPER(n2.frais) FROM tab_Paiement n2 WHERE n2.ideleve = b.ideleve ORDER BY n2.datepaie DESC LIMIT 1) AS frais " +
 	        "FROM tab_Eleve b " +
@@ -759,14 +753,13 @@ public class PaiementServiceImpl implements PaiementService{
 
 
 	public List<PaiementDto> PaiementDeleves(Long ideleve) {
-		String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	    String query = " SELECT DISTINCT ON (n.idpaiement) " +
 	                   " UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe, b.ideleve, " +
 	                   " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, " +
 	                   " c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, " +
 	                   " UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants, n.datepaie, UPPER(n.frais) AS frais, " +
 	                   " UPPER(z.username) AS username,z.iduser, x.id, " +
-	           	       " CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo " +  
+		           " COALESCE(NULLIF(x.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " + 
 	                   " FROM tab_Eleve b " +
 	                   " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse " +
 	                   " JOIN tab_Classe e ON c.idclasse = e.idclasse " +
@@ -804,12 +797,11 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public List<PaiementDto> CollectionPaiementModes(Long idpaiement) {
-		 String basePath = "https://sysgespecolebackend.onrender.com/log/";
 		 String query = "SELECT UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, b.ideleve, "
                 + "a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "
                 + "c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "
                 + "UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants,n.datepaie, UPPER(n.frais) as frais, "
-                + " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos, x.id, " 
+		+ " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, x.id, "
                 + "m.idprovince, UPPER(m.province) AS province, h.idcommune, UPPER(h.commune) AS commune,UPPER(z.username) AS username,z.iduser "
                 + "FROM tab_Eleve b "
                 + "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "
@@ -849,7 +841,6 @@ public class PaiementServiceImpl implements PaiementService{
 	}
 
 	public List<PaiementDto> EcoleParClasses(Long idecole, Long idclasse, Long idannee) {
-	    String basePath = "https://sysgespecolebackend.onrender.com/log/";
 
 	    String query =
 	        "WITH PaiementsDistincts AS ( " +
@@ -882,7 +873,7 @@ public class PaiementServiceImpl implements PaiementService{
 	        "   COALESCE(pd.montants, 0) AS montants, " +
 	        "   COALESCE(mf.montant, 0) AS montant, " +
 	        "   (COALESCE(mf.montant, 0) - COALESCE(pd.montants, 0)) AS reste, " +
-	        "   CONCAT('" + basePath + "', CASE WHEN x.photo IS NOT NULL AND x.photo != '' THEN UPPER(x.photo) ELSE 'icon.jpg' END) AS photo " +
+	        " COALESCE(NULLIF(x.photo, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747291830/icon_jygejr.jpg') AS photo " + 
 	        "FROM tab_Eleve b " +
 	        "JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse " +
 	        "JOIN tab_Intermedaireannee ia ON b.idintermedaireannee = ia.idintermedaireannee " +
@@ -924,14 +915,13 @@ public ResponseEntity<?> EcoleParClasse(Long idecole,Long idclasse,Long idannee)
 
 
 public List<PaiementDto> FichePaiementeleves(long ideleve) {
-	String basePath = "https://sysgespecolebackend.onrender.com/log/";
 	 String query = " SELECT DISTINCT ON (n.idpaiement) "+
     " UPPER(b.nom) AS nom, UPPER(b.postnom) AS postnom, UPPER(b.prenom) AS prenom, UPPER(b.sexe) AS sexe , UPPER(b.adresse) AS adresse, b.ideleve, "+ 
     " a.idecole, UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, e.idclasse, UPPER(e.classe) AS classe, n.idpaiement, "+ 
     " c.idintermedaireclasse, d1.idintermedaireannee, f.idannee, k.idcategorie, UPPER(k.categorie) AS categorie, "+ 
     " UPPER(f.annee) AS annee, l.idtranche, UPPER(l.tranche) AS tranche, n.montants, n.datepaie, UPPER(n.frais) AS frais, "+ 
     " UPPER(v.province) AS province, v.idprovince, UPPER(m.commune) AS commune, m.idcommune,x.id, "+
-    " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos " +
+   + " COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos "
     " FROM tab_Eleve b "+
     " JOIN tab_Intermedaireclasse c ON b.idintermedaireclasse = c.idintermedaireclasse "+
     " JOIN tab_Classe e ON c.idclasse = e.idclasse "+
@@ -974,7 +964,6 @@ public ResponseEntity<?> FichePaiementeleve(Long ideleve) throws FileNotFoundExc
 
 
 public List<PaiementDto> FicheRecouvrementClasses(long idecole, long idclasse, long idannee) {
-	String basePath = "https://sysgespecolebackend.onrender.com/log/";
     String query ="WITH PaiementsDistincts AS ( " +
         "    SELECT n.ideleve, SUM(n.montants) AS montants " +
         "    FROM tab_Paiement n " +
@@ -998,7 +987,7 @@ public List<PaiementDto> FicheRecouvrementClasses(long idecole, long idclasse, l
         "    UPPER(a.ecole) AS ecole, UPPER(a.avenue) AS avenue, " +
         "    e.idclasse, UPPER(e.classe) AS classe, UPPER(an.annee) AS annee_scolaire, " +
         "    UPPER(h.commune) AS commune, UPPER(g.province) AS province, " +
-        " CONCAT('" + basePath + "', CASE WHEN x.logos IS NOT NULL AND x.logos != '' THEN UPPER(x.logos) ELSE 'logo.jpg' END) AS logos, " +
+	" COALESCE(NULLIF(x.logos, ''), 'https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747295766/logo_lpf2qr.webp') AS logos, " +
         "    COALESCE(pd.montants, 0) AS montant_paiement, " +
         "    COALESCE(mf.montant, 0) AS montant_attendu, " +
         "    (COALESCE(mf.montant, 0) - COALESCE(pd.montants, 0)) AS montant_frais " +
