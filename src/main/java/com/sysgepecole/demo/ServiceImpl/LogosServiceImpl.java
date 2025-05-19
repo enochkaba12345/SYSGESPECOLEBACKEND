@@ -81,45 +81,42 @@ public class LogosServiceImpl implements LogosService {
     }
 
 	
-    @Override
-    public List<LogosModelDto> collecteLogos(Long idecole) {
-       
-	String basePath = "https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747319356/logosecole/";
-        StringBuilder query = new StringBuilder();
-        query.append("SELECT ")
-   .append("a.idecole, ")
-   .append("UPPER(a.ecole) AS ecole, ")
-   .append("y.id AS idlogo, ")
-   .append("h.idcommune, ")
-   .append("UPPER(h.commune) AS commune, ")
-   .append("UPPER(a.avenue) AS avenue, ")
-   .append("UPPER(p.province) AS province, ")
-   .append("CASE ")
-   .append("  WHEN y.logos IS NULL OR y.logos = '' THEN CONCAT(:basePath, 'logosecole/logo.jpg') ")
-   .append("  WHEN LEFT(y.logos, 8) = 'https://' THEN y.logos ")
-   .append("  ELSE CONCAT(:basePath, y.logos) ")
-   .append("END AS logos ")
-   .append("FROM tab_Ecole a ")
-   .append("JOIN tab_Commune h ON h.idcommune = a.idcommune ")
-   .append("JOIN tab_Province p ON p.idprovince = a.idprovince ")
-   .append("LEFT JOIN tab_Logos y ON y.idecole = a.idecole ");
+   @Override
+public List<LogosModelDto> collecteLogos(Long idecole) {
 
-        MapSqlParameterSource parameters = new MapSqlParameterSource();
+    String basePath = "https://res.cloudinary.com/dx7zvvxtw/image/upload/v1747319356/logosecole/";
+    
+    StringBuilder query = new StringBuilder();
+    query.append("SELECT a.idecole, UPPER(a.ecole) AS ecole, y.id, h.idcommune, ")
+         .append("UPPER(h.commune) AS commune, UPPER(a.avenue) AS avenue, ")
+         .append("UPPER(p.province) AS province, ")
+         .append("CASE ")
+         .append("  WHEN y.logos IS NULL OR y.logos = '' THEN CONCAT('" + basePath + "', 'logo.jpg') ")
+         .append("  WHEN y.logos LIKE 'https://%' THEN y.logos ")
+         .append("  ELSE CONCAT('" + basePath + "', y.logos) ")
+         .append("END AS logos ")
+         .append("FROM tab_Ecole a ")
+         .append("JOIN tab_Commune h ON h.idcommune = a.idcommune ")
+         .append("JOIN tab_Province p ON p.idprovince = a.idprovince ")
+         .append("LEFT JOIN tab_Logos y ON y.idecole = a.idecole ");
 
-        if (idecole != null && idecole > 0) {
-            query.append("WHERE a.idecole = :idecole ");
-            parameters.addValue("idecole", idecole);
-        }
+    MapSqlParameterSource parameters = new MapSqlParameterSource();
 
-        try {
-            return namedParameterJdbcTemplate.query(
-                query.toString(),
-                parameters,
-                new BeanPropertyRowMapper<>(LogosModelDto.class)
-            );
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        }
+    if (idecole != null && idecole > 0) {
+        query.append("WHERE a.idecole = :idecole ");
+        parameters.addValue("idecole", idecole);
     }
+
+    try {
+        return namedParameterJdbcTemplate.query(
+            query.toString(),
+            parameters,
+            new BeanPropertyRowMapper<>(LogosModelDto.class)
+        );
+    } catch (Exception e) {
+        e.printStackTrace();
+        return Collections.emptyList();
+    }
+}
+
 }
