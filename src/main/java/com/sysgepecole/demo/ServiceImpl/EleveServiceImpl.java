@@ -476,7 +476,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	                 + "LEFT JOIN tab_Province g ON b.idprovince = g.idprovince "
 	                 + "LEFT JOIN tab_Commune h ON h.idcommune = a.idcommune "
 	                 + "LEFT JOIN tab_Logos y ON y.idecole = a.idecole "
-	                 + "WHERE a.idecole = :idecole AND e.idclasse = :idclasse AND e.idannee = :idannee "
+	                 + "WHERE a.idecole = :idecole AND e.idclasse = :idclasse AND f.idannee = :idannee "
 	                 + "ORDER BY ideleve, noms ASC";
 
 	   
