@@ -497,12 +497,16 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 
 
 	public ResponseEntity<?> FicheClasse(long idecole, long idclasse, long idannee) throws FileNotFoundException, JRException {
-	    try {	    
-           List<EleveModelDto> collections = FicheClasses(idecole, idclasse,idannee);
-       
+    try {	    
+        List<EleveModelDto> collections = FicheClasses(idecole, idclasse, idannee);
+        System.out.println("Taille de la collection : " + (collections != null ? collections.size() : "null"));
+
+        if (collections == null || collections.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Aucun élève trouvé pour cette combinaison d’ID.");
+        }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
-
         InputStream jrxmlStream = new ClassPathResource("etats/Ficheleves.jrxml").getInputStream();
         JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
         JasperPrint reportlist = JasperFillManager.fillReport(jasperReport, new HashMap<>(), ds);
