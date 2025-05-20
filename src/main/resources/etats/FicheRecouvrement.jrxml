@@ -40,42 +40,42 @@
 			<textField>
 				<reportElement x="115" y="73" width="400" height="20" uuid="5dae39ec-be85-40f3-8211-16352f1c2851"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="116" y="49" width="103" height="20" uuid="94ebdd0d-eb2a-47f5-9abe-905f1b12940a"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[COMMUNE DE ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="203" y="49" width="318" height="19" uuid="57b99596-38f8-4c15-9597-cf4bff4a811c"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="116" y="26" width="399" height="20" uuid="30df49ff-91ec-472c-835e-a5ad49e7b296"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="116" y="3" width="103" height="20" uuid="dc08336a-962a-400f-9923-955f8a6d83bc"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VILLE PROVINCE DE ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="225" y="3" width="290" height="20" uuid="d25dc91e-a0dc-4458-a5b5-8067dbe686bd"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
 			</textField>
@@ -85,14 +85,14 @@
 			<staticText>
 				<reportElement x="100" y="112" width="198" height="23" uuid="1e18f873-4d47-4152-96dc-3d5aabf9e15e"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LISTE DES RECOUVREMENTS DE LA]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="297" y="112" width="270" height="23" uuid="fff00047-649e-470c-8e86-e9e00b54f115"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
 			</textField>
@@ -108,7 +108,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[N°]]></text>
 			</staticText>
@@ -120,7 +120,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMS]]></text>
 			</staticText>
@@ -132,7 +132,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SEXE]]></text>
 			</staticText>
@@ -144,7 +144,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RESTE]]></text>
 			</staticText>
@@ -156,7 +156,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MONTANT]]></text>
 			</staticText>
@@ -170,7 +170,7 @@
 					<pen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{RowIndex}]]></textFieldExpression>
 			</textField>
@@ -180,7 +180,7 @@
 					<pen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{noms}]]></textFieldExpression>
 			</textField>
@@ -190,7 +190,7 @@
 					<pen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
 			</textField>
@@ -200,7 +200,7 @@
 					<pen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["CDF " + ($F{montant_paiement} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($F{montant_paiement}))]]></textFieldExpression>
 			</textField>
@@ -210,7 +210,7 @@
 					<pen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12"/>
+					<font fontName="SansSerif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["CDF " + ($F{montant_frais} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($F{montant_frais}))]]></textFieldExpression>
 			</textField>
@@ -224,42 +224,42 @@
 			<staticText>
 				<reportElement x="281" y="0" width="100" height="30" uuid="102695a8-046e-496d-8756-43418c5379ab"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MONTANT:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="383" y="1" width="318" height="30" uuid="039e21b1-8b8d-4925-bf84-9a432feb3330"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" CDF " + ($V{totalMontantPaiement} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($V{totalMontantPaiement}))]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="320" y="16" width="60" height="30" uuid="35952ade-9938-4f51-b3e8-7c2cfb5ee846"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ RESTE       :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="320" y="32" width="60" height="30" uuid="b94b145a-4034-4bf3-89f5-1085b6adbda1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ TOTAL       :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="383" y="17" width="318" height="30" uuid="348e45b3-6ffc-44f5-aee2-171703e5333c"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" CDF " + ($V{totalMontantFrais} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($V{totalMontantFrais}))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="383" y="32" width="318" height="30" uuid="ba8f4428-aa4f-44bd-96af-5acac229bda5"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" CDF " + ($V{totalPaiementEtFrais} == null ? "0.00" : new java.text.DecimalFormat("#,##0.00").format($V{totalPaiementEtFrais}))]]></textFieldExpression>
 			</textField>
