@@ -117,11 +117,14 @@ public class EleveController {
 		return eleveService.ElevePar(idecole, idclasse, idannee, ideleve);
 	}
 
+	
+
 	@GetMapping("/FicheClasse/{idecole}/{idclasse}/{idannee}")
-	public ResponseEntity<?> FicheClasse(@PathVariable Long idecole, @PathVariable Long idclasse,@PathVariable Long idannee)
-			throws FileNotFoundException, JRException {
-		return eleveService.FicheClasse(idecole, idclasse,idannee);
-	}
+        public ResponseEntity<?> FicheClasse(@PathVariable Long idecole, @PathVariable Long idclasse, @PathVariable Long idannee) 
+	               throws FileNotFoundException, JRException {
+        System.out.println("Received request: " + idecole + ", " + idclasse + ", " + idannee);
+        return eleveService.FicheClasse(idecole, idclasse, idannee);
+          }
 	
 	 @PostMapping("/effectuer")
 	    public ResponseEntity<String> effectuerInscription(@RequestParam String username,
