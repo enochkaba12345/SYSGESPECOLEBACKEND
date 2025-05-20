@@ -459,7 +459,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	}
 
 
-	public List<EleveModelDto> FicheClasses(long idecole, long idclasse) {
+	public List<EleveModelDto> FicheClasses(long idecole, long idclasse, long idannee) {
 	    String query = "SELECT b.ideleve, UPPER(b.nom) || ' ' || UPPER(b.postnom) || ' ' || UPPER(b.prenom) AS noms, "
 	                 + "UPPER(b.sexe) AS sexe, UPPER(b.nomtuteur) AS nomtuteur, b.dateins, b.datenaiss, UPPER(b.email) AS email, "
 	                 + "b.telephone, a.idecole, UPPER(a.ecole) AS ecole, e.idclasse, UPPER(e.classe) AS classe, UPPER(b.adresse) AS adresse, "
@@ -476,13 +476,14 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	                 + "LEFT JOIN tab_Province g ON b.idprovince = g.idprovince "
 	                 + "LEFT JOIN tab_Commune h ON h.idcommune = a.idcommune "
 	                 + "LEFT JOIN tab_Logos y ON y.idecole = a.idecole "
-	                 + "WHERE a.idecole = :idecole AND e.idclasse = :idclasse "
+	                 + "WHERE a.idecole = :idecole AND e.idclasse = :idclasse AND e.idannee = :idannee "
 	                 + "ORDER BY ideleve, noms ASC";
 
 	   
 	    MapSqlParameterSource parameters = new MapSqlParameterSource()
 	        .addValue("idecole", idecole)
-	        .addValue("idclasse", idclasse);
+	        .addValue("idclasse", idclasse)
+		.addValue("idannee", idannee);
 
 	 
 	  
@@ -495,9 +496,9 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 
 
 
-	public ResponseEntity<?> FicheClasse(long idecole, long idclasse) throws FileNotFoundException, JRException {
+	public ResponseEntity<?> FicheClasse(long idecole, long idclasse, long idannee) throws FileNotFoundException, JRException {
 	    try {	    
-           List<EleveModelDto> collections = FicheClasses(idecole, idclasse);
+           List<EleveModelDto> collections = FicheClasses(idecole, idclasse,idannee);
         if (collections.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Aucune fiche élève trouvée pour l'ID : " + idecole);
