@@ -499,10 +499,7 @@ public ResponseEntity<?> CollecteEleveses(long idecole) {
 	public ResponseEntity<?> FicheClasse(long idecole, long idclasse, long idannee) throws FileNotFoundException, JRException {
 	    try {	    
            List<EleveModelDto> collections = FicheClasses(idecole, idclasse,idannee);
-        if (collections.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Aucune fiche élève trouvée pour l'ID : " + idecole);
-        }
+       
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(collections);
 
