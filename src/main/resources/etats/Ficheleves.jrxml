@@ -26,56 +26,56 @@
 			<textField>
 				<reportElement x="115" y="73" width="400" height="20" uuid="9ee9e5f3-383a-432a-b7e5-c391ffb47866"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="116" y="49" width="103" height="20" uuid="d4a95acc-5fb4-498e-88b7-0faa2ffd74eb"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[COMMUNE DE ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="203" y="49" width="318" height="19" uuid="d37b0121-bc20-4316-82d6-f1c2715716b4"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="116" y="26" width="399" height="20" uuid="ae902de3-20c3-4607-b5c6-2af8dbd999fc"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="116" y="3" width="103" height="20" uuid="3c41588f-336f-47b2-89bb-c7211273394c"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VILLE PROVINCE DE ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="225" y="3" width="290" height="20" uuid="a79b8d99-5b54-4278-96dc-c2f1d53c3de9"/>
 				<textElement>
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="154" y="112" width="144" height="23" uuid="b50c3779-0741-4184-814d-d8023bd156f8"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LISTE DES ELEVES DE LA ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="287" y="112" width="270" height="23" uuid="4a709cbc-822f-41a9-9421-3d8ab2fd874e"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
 			</textField>
@@ -94,7 +94,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMS]]></text>
 			</staticText>
@@ -106,7 +106,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SEXE]]></text>
 			</staticText>
@@ -118,7 +118,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CLASSE]]></text>
 			</staticText>
@@ -130,7 +130,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[N°]]></text>
 			</staticText>
@@ -147,7 +147,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 					<paragraph leftIndent="0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{noms}]]></textFieldExpression>
@@ -160,7 +160,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
 			</textField>
@@ -172,7 +172,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{classe}]]></textFieldExpression>
 			</textField>
@@ -185,7 +185,7 @@
 					<pen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 					<paragraph leftIndent="0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{RowIndex}]]></textFieldExpression>
@@ -197,14 +197,14 @@
 			<staticText>
 				<reportElement x="380" y="0" width="100" height="30" uuid="6ab2bbb5-e5cc-40ec-9a41-398aff079204"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="483" y="0" width="108" height="30" uuid="14031f6f-f554-434e-bf6e-19667b8e0ebd"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
