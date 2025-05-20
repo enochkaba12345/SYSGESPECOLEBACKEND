@@ -26,7 +26,7 @@ public interface EleveService {
 	 ResponseEntity<?> CollecteEleveses(long idecole);
 	 ResponseEntity<?> CollecteElevedashbord(long idecole,long idclasse,long idannee);
 	 ResponseEntity<?> FicheEleve(Long ideleve) throws FileNotFoundException, JRException;
-	 ResponseEntity<?> FicheClasse(long idecole,long idclasse) throws FileNotFoundException, JRException;
+	 ResponseEntity<?> FicheClasse(long idecole,long idclasse,long idannee) throws FileNotFoundException, JRException;
 	 List<EleveModelDto> searchEleves(String nom, Long idecole, boolean isAdmin);
 	 ResponseEntity<?> CollecteAnneeEleve(long idintermedaireclasse,long idintermedaireannee) ;
 	 ResponseEntity<?> CollecteClasseAnneeEleve(long idintermedaireclasse,long idintermedaireannee);
