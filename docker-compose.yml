@@ -4,7 +4,7 @@ services:
     image: postgres:16
     container_name: postgres_db
     environment:
-      POSTGRES_USER: bd_sysgespecole_user_user
+      POSTGRES_USER: bd_sysgespecole_user
       POSTGRES_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
       POSTGRES_DB: bd_sysgespecole
     ports:
@@ -18,9 +18,9 @@ services:
     - db
   environment:
     SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/bd_sysgespecole
-    SPRING_DATASOURCE_USERNAME: bd_sysgespecole_user_user
+    SPRING_DATASOURCE_USERNAME: bd_sysgespecole_user
     SPRING_DATASOURCE_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
   ports:
     - "8080:8080"
-  command: ["sh", "-c", "until pg_isready -h postgres_db -U bd_sysgespecole_user_user; do sleep 2; done && java -jar app.jar"]
+  command: ["sh", "-c", "until pg_isready -h postgres_db -U bd_sysgespecole_user; do sleep 2; done && java -jar app.jar"]
 
