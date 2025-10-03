@@ -5,9 +5,9 @@ db:
 image: postgres:16
 container\_name: postgres\_db
 environment:
-POSTGRES\_USER: bddsysgespecole\_user
-POSTGRES\_PASSWORD: L84pxZ3P6P0BCUekj5ffsfoQpZ51SWM5
-POSTGRES\_DB: bddsysgespecole
+POSTGRES\_USER: bd_sysgespecole_user\_user
+POSTGRES\_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
+POSTGRES\_DB: bd_sysgespecole
 ports:
 \- "5432:5432"
 restart: always
@@ -18,8 +18,8 @@ container\_name: spring\_app
 depends\_on:
 \- db
 environment:
-SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/bddsysgespecole
-SPRING\_DATASOURCE\_USERNAME: bddsysgespecole\_user
-SPRING\_DATASOURCE\_PASSWORD: L84pxZ3P6P0BCUekj5ffsfoQpZ51SWM5
+SPRING\_DATASOURCE\_URL: jdbc\:postgresql://postgres\_db:5432/bd_sysgespecole
+SPRING\_DATASOURCE\_USERNAME: bd_sysgespecole_user\_user
+SPRING\_DATASOURCE\_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
 ports:
 \- "8080:8080"
