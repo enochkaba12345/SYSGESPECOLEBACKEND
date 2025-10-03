@@ -1,11 +1,10 @@
 version: "3.8"
-
 services:
   db:
     image: postgres:16
     container_name: postgres_db
     environment:
-      POSTGRES_USER: bd_sysgespecole_user
+      POSTGRES_USER: bd_sysgespecole_user_user
       POSTGRES_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
       POSTGRES_DB: bd_sysgespecole
     ports:
@@ -13,13 +12,15 @@ services:
     restart: always
 
   app:
-    build: .
-    container_name: spring_app
-    depends_on:
-      - db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-d3fr0vm3jp1c73f453ng-a.oregon-postgres.render.com:5432/bd_sysgespecole
-      SPRING_DATASOURCE_USERNAME: bd_sysgespecole_user
-      SPRING_DATASOURCE_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
-    ports:
-      - "8080:8080"
+  build: .
+  container_name: spring_app
+  depends_on:
+    - db
+  environment:
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/bd_sysgespecole
+    SPRING_DATASOURCE_USERNAME: bd_sysgespecole_user_user
+    SPRING_DATASOURCE_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
+  ports:
+    - "8080:8080"
+  command: ["sh", "-c", "until pg_isready -h postgres_db -U bd_sysgespecole_user_user; do sleep 2; done && java -jar app.jar"]
+
