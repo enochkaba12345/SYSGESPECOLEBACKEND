@@ -48,48 +48,41 @@
 				<textFieldExpression><![CDATA[$F{ideleve}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="192" y="70" width="290" height="19" uuid="513b7f27-ff7e-4bb1-b810-4e0d3d7fbae6"/>
+				<reportElement x="192" y="63" width="290" height="19" uuid="513b7f27-ff7e-4bb1-b810-4e0d3d7fbae6"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{commune}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="107" y="70" width="103" height="20" uuid="bba51ca3-0854-46c8-8d84-edb9db333f3f"/>
+				<reportElement x="107" y="63" width="103" height="20" uuid="bba51ca3-0854-46c8-8d84-edb9db333f3f"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[COMMUNE DE ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="108" y="53" width="399" height="20" uuid="48e70dd3-dd06-46a1-b4d1-89b7b77c8543"/>
+				<reportElement x="108" y="48" width="399" height="20" uuid="48e70dd3-dd06-46a1-b4d1-89b7b77c8543"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ecole}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="108" y="34" width="103" height="20" uuid="92eeb241-aa30-4738-8def-d2d5c4ce1b76"/>
+				<reportElement x="108" y="34" width="399" height="20" uuid="92eeb241-aa30-4738-8def-d2d5c4ce1b76"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[VILLE PROVINCE DE ]]></text>
+				<text><![CDATA[VILLE PROVINCE DE KINSHASA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="217" y="34" width="290" height="20" uuid="1964b8ba-b9a0-4755-a227-cb2fac0fe70b"/>
-				<textElement>
-					<font fontName="SansSerif" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{province}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="107" y="86" width="400" height="20" uuid="073267ca-1695-4f24-9e3a-dd689e7172e9"/>
+				<reportElement x="107" y="79" width="400" height="20" uuid="073267ca-1695-4f24-9e3a-dd689e7172e9"/>
 				<textElement>
 					<font fontName="SansSerif" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{avenue}]]></textFieldExpression>
 			</textField>
-			<image hAlign="Center" vAlign="Middle">
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" isUsingCache="true">
 				<reportElement x="10" y="32" width="90" height="77" uuid="dfc81179-28fc-443b-83b1-ab4fbbf005e7"/>
 				<imageExpression><![CDATA[new java.net.URL($F{logos})]]></imageExpression>
 			</image>
@@ -256,7 +249,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{province} + " LE " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateins})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" KINSHASA LE " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateins})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="37" y="327" width="100" height="20" uuid="21e689f0-89e1-482c-8712-281fcde8aafa"/>
@@ -300,8 +293,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{province} + " LE " + new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{datenaiss})]]></textFieldExpression>
 			</textField>
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="446" y="17" width="90" height="77" uuid="22c54cb9-0556-4d02-a0cd-adf0133f46be"/>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" isUsingCache="true">
+				<reportElement x="451" y="17" width="90" height="77" uuid="22c54cb9-0556-4d02-a0cd-adf0133f46be"/>
 				<imageExpression><![CDATA[new java.net.URL($F{photo})]]></imageExpression>
 			</image>
 		</band>

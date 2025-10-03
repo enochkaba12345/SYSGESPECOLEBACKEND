@@ -27,7 +27,7 @@
 			<staticText>
 				<reportElement x="10" y="5" width="160" height="20" uuid="20d973e9-cdec-44ed-a053-708dc1f61183"/>
 				<textElement>
-					<font fontName="SansSerif" size="11" isBold="true"/>
+					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CARTE D'ÉLÈVE]]></text>
 			</staticText>
@@ -119,14 +119,14 @@
 			<staticText>
 				<reportElement x="73" y="54" width="169" height="20" uuid="d0de272f-aabc-450b-a1e2-42d283d63114"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="12" isBold="true"/>
+					<font fontName="Calibri" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Règlement de l'élève]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="10" y="73" width="232" height="75" uuid="bc468e82-de3f-439f-856e-8fab767d8768"/>
 				<textElement>
-					<font fontName="SansSerif" size="10"/>
+					<font fontName="Calibri" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["1. Respect des enseignants et du personnel.\n"+
 "2. Assiduité et ponctualité.\n"+
