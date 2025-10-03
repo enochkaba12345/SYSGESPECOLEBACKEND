@@ -18,7 +18,7 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/bd_sysgespecole
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dpg-d3fr0vm3jp1c73f453ng-a.oregon-postgres.render.com:5432/bd_sysgespecole
       SPRING_DATASOURCE_USERNAME: bd_sysgespecole_user
       SPRING_DATASOURCE_PASSWORD: wlfMHSJyFKEjP3FjaMmtIvIPWxuHBYNm
     ports:
